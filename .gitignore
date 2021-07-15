@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+#AI-psd files
+ai-psd/
+
+
 # Distribution / packaging
 .Python
 build/
