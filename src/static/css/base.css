@@ -22,6 +22,7 @@ body {
     flex-direction: column;
     justify-content: center;
     font-size: clamp(1.2rem,1.45rem,1.8rem);
+    padding-block-start: 1rem;
 
 }
 .uppernav .center {
@@ -74,4 +75,30 @@ body {
   
 hr {
     color: var(--clr-background);
+}
+
+@media only screen and (min-width: 768px){
+    html {
+        font-size: 18px;
+    }
+
+    .uppernav {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+    .uppernav .right {
+        display: flex;
+        width: 6rem;
+        justify-content: space-between;
+    }
+
+    .uppernav .left {
+        align-self:unset;
+        padding-block: 0;
+    }
+    .uppernav .center {
+        padding-block-start: 0;
+    }
 }
