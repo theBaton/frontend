@@ -9,11 +9,12 @@
 
 .cont-slider .overlay-text {
     display: flex;
-    position: fixed;
     flex-direction: column;
     justify-content: flex-end;
     font-family: "Montserrat", sans-serif;
     margin-inline: 1.5rem;
+    position: absolute;
+    bottom: 1rem;
 }
 .overlay-text wrapper {
     height: 100%;
