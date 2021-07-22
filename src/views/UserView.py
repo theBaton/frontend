@@ -1,6 +1,6 @@
 from flask import jsonify, request, make_response, Blueprint, g, redirect, render_template
-from ..models.UserModel import User
-from ..models import db
+#from ..models.UserModel import User
+#from ..models import db
 import os
 import uuid
 import datetime
