@@ -1,4 +1,87 @@
-html {
-    margin: 0;
-    padding: 0;
+
+
+.cont-slider {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.cont-slider .overlay-text {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: "Montserrat", sans-serif;
+    margin-inline: 1.5rem;
+}
+.overlay-text wrapper {
+    height: 100%;
+}
+.overlay-text h1 {
+    font-size: 1rem;
+    color: var(--clr-light-primary);
+    padding-block-end: 0.4rem;
+}
+
+.overlay-text h2 {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 0.7rem;
+    margin-inline-end: 0%;
+    color: var(--clr-light-secondary)
+}
+
+.cont-slider .slider {
+    position: absolute;
+    width: 500%;
+    animation: sliding 25s ease-in-out 0s backwards infinite;
+}
+
+.cont-slider .slide {
+    display: inline-block;
+    position: relative;
+    background-size: cover;
+    min-inline-size: 100vw;
+    aspect-ratio: 16/9;
+}
+
+.one {
+    background: linear-gradient(rgba(20,20,20, .4), rgba(20,20,20, .4)), 
+        url(https://farm9.staticflickr.com/6183/6025120829_4d582707f7_z.jpg);
+}
+
+.two {
+    background: linear-gradient(rgba(20,20,20, .4), rgba(20,20,20, .4)), 
+        url(http://farm9.staticflickr.com/8064/8179351735_c8c069dc61_z.jpg);
+}
+
+.three {
+    background: linear-gradient(rgba(20,20,20, .4), rgba(20,20,20, .4)), 
+        url(http://farm9.staticflickr.com/8061/8188068610_70eda46a1f_z.jpg);
+}
+
+.four {
+    background: linear-gradient(rgba(20,20,20, .4), rgba(20,20,20, .4)), 
+        url(http://farm9.staticflickr.com/242/535485602_9328a91e65_z.jpg);
+}
+
+.five {
+    background: linear-gradient(rgba(20,20,20, .4), rgba(20,20,20, .4)), 
+        url(http://farm9.staticflickr.com/8488/8175350378_a97be42263_z.jpg);
+}
+
+
+@keyframes sliding {
+  0% {left: 0%; }
+  15% {left: 0%; }
+  20% {left: -100%; }
+  35% {left: -100%; }
+  40% {left: -200%; }  
+  55% {left: -200%; }
+  60% {left: -300%; }
+  75% {left: -300%; }
+  80% {left: -400%; }
+  95% {left: -400%; }   
+  100% {left: 0; }
 }
