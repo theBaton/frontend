@@ -8,17 +8,18 @@
 }
 
 :root {
-    --clr-background: #efefef;
+    --clr-background: #f8f8f8;
     --clr-primary-red: #be1e2d;
     --clr-primary-text: #202020;
     --clr-secondary-text: #737373;
-    --clr-light-primary: #fafafa;
+    --clr-light-primary: #fefefe;
     --clr-light-secondary: #f0f0f0;
     font-size: 16px;
 }
 
 html {
     font-family: "Montserrat", sans-serif;
+    background-color: var(--clr-background);
     
 }
 
