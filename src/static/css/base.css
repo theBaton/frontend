@@ -4,6 +4,7 @@
 * {
     margin: 0;
     padding:0;
+    overflow-x:hidden;
 }
 
 :root {
@@ -13,11 +14,12 @@
     --clr-secondary-text: #737373;
     --clr-light-primary: #fafafa;
     --clr-light-secondary: #f0f0f0;
+    font-size: 16px;
 }
 
 html {
     font-family: "Montserrat", sans-serif;
-    font-size: 16px;
+    
 }
 
 nav {
@@ -86,7 +88,7 @@ hr {
 }
 
 @media only screen and (min-width: 768px){
-    html {
+    :root {
         font-size: 18px;
     }
 
