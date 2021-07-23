@@ -170,8 +170,6 @@
 }
 .recart-btn {
     overflow: hidden;
-    background: transparent;
-    box-shad/ow: 5px 5px 20px rgba(0,0,0,0.1)
 }
 
 .recart-btn button{
@@ -217,9 +215,6 @@
         
     }
     
-    .recart-element .container {
-
-    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -260,11 +255,6 @@
 
     .cont-slider .overlay-text {
         bottom: 4rem;
-    }
-   
-    
-    .recart-element .container {
-
     }
 
 }
