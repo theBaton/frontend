@@ -50,7 +50,6 @@ nav {
     display: flex;
     width: 6rem;
     justify-content: space-between;
-    padding-block: 0.5rem;
 }
   
 .uppernav .right {

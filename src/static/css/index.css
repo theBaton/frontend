@@ -179,15 +179,12 @@
     border-radius: 1em;
     background-color: var(--clr-primary-red);
     transition: all 0.3s ease-in-out;
-
 }
 
 .recart-btn button:hover {
     background-color: var(--clr-light-primary);
     box-shadow: 5px 5px 20px rgba(0,0,0,0.1) inset;
 }
-
-
 
 .recart-btn a{
     overflow: hidden;
@@ -205,7 +202,79 @@
     color: var(--clr-primary-red);
 }
 
+.subscribe-flex {
+    background-color: var(--clr-light-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.subscribe-flex .news-flex {
+    padding-block: 5vw;
+    padding-inline: 15vw;
+}
 
+.subscribe-flex .news-flex .subs-text-wrap {
+    padding-block: 2vw
+}
+
+.subscribe-flex .news-flex .wrapper-1 h1{
+    font-size: 1.3125rem;
+    text-align: center;
+        
+}
+
+.subscribe-flex .news-flex .wrapper-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subscribe-flex .news-flex .wrapper-2 h2{
+    font-size: 1rem;
+    padding-block-end: 1vw;
+}
+
+
+.subscribe-flex .news-flex .wrapper-3 form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subscribe-flex .news-flex .wrapper-3 button{
+    font-size: 0.8rem;
+    font-family: "Montserrat";
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    border: none;
+    background: transparent;
+    background-color: var(--clr-primary-red);
+    color: var(--clr-light-primary);
+    padding: 0.8rem;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.subscribe-flex .news-flex .wrapper-3 input {
+    background: transparent;
+    border-radius: 0.25rem;
+    width: clamp(20vw, 50%, 100%);
+    padding: 0.7rem;
+    border: 1px solid var(--clr-primary-text);
+    opacity: 0.4;
+}
+
+.subscribe-flex .news-flex .wrapper-3 input:focus {
+    opacity: 1;
+}
+
+.subscribe-flex img {
+    border-radius: 1rem;
+    max-height: 180px
+    
+}
 
 @media only screen and (min-width: 600px) {
     .recart-grid{
@@ -236,6 +305,59 @@
     }
     .recart-grid {
         grid-template-columns: repeat(3,1fr);
+    }
+    .subscribe-flex {
+        flex-direction: row;
+    }
+    .subscribe-flex .news-flex {
+        padding-inline: 5vw;
+        padding-block: 7vw;
+        
+    }
+    .subscribe-flex .wrapper-2 {
+        align-items: flex-start;
+    }
+    
+    .subscribe-flex .news-flex .subs-text-wrap {
+    padding-block: clamp(20px,2vw,35px)
+}
+
+.subscribe-flex .news-flex .wrapper-1 h1{
+    font-size: clamp(20px,2vw,35px);
+        
+}
+
+.subscribe-flex .news-flex .wrapper-2 h2{
+    font-size: clamp(1.2rem,1.4vw,1.6rem);
+    
+}
+
+
+.subscribe-flex .news-flex .wrapper-3 form{
+
+}
+
+.subscribe-flex .news-flex .wrapper-3 button{
+    font-size: clamp(0.8rem,1vw,1rem);
+    letter-spacing: clamp(1.3px,0.1vw,1.6px);
+    padding-block: clamp(0.8rem,0.8vw,1rem);
+    padding-inline: clamp(1.1rem,1.3vw, 1.5rem);
+}
+
+.subscribe-flex .news-flex .wrapper-3 input {
+    width: clamp(100px,10vw,230px);
+    padding: clamp(0.7rem,0.7vw,1rem);
+    border: 0.1vw solid var(--clr-primary-text);
+}
+.subscribe-flex img{
+    height: max(180px,13vw);
+    
+}
+    .subscribe-flex .news-flex .wrapper-1 h1 {
+        text-align: left
+    }
+    .subscribe-flex .news-flex .wrapper-2 {
+        align-items: flex-start;
     }
 
 }
