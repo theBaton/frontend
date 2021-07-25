@@ -34,7 +34,7 @@
     border: 1px solid var(--clr-light-primary);
     background-image: url("https://images.pexels.com/photos/2705888/pexels-photo-2705888.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-size: cover;
-    max-width: 15ch;
+    max-width: 14.6ch;
     min-height: 30ch;
     border-radius: 0.5rem;
     overflow: hidden;
