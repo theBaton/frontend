@@ -17,4 +17,8 @@ def create_app(env_name):
     def index():
         return render_template('index.html')
     
+    @app.route('/articles')
+    def articles():
+        return render_template('articles.html')
+
     return app
