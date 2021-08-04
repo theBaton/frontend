@@ -4,3 +4,5 @@ jwt = JWTManager()
 
 from .UserView import user_api
 #from .BlogpostView import blogpost_api
+#from .EditorialView import editorial_api
+#from .PodcastView import podcast_api

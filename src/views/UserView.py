@@ -12,8 +12,6 @@ user_api = Blueprint('user_api', __name__)
 def articles():
     return render_template('articles.html')
 
-
-
 @user_api.route('/login')
 def login():
     return render_template('login.html')

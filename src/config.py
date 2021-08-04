@@ -6,9 +6,9 @@ class Development(object):
     """
     DEBUG = True
     TESTING = False
-    #SQLALCHEMY_TRACK_MODIFICATIONS=False
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
     SECRET_KEY = os.environ['SECRET_KEY']
-    #SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 class Production(object):
     """

@@ -1,6 +1,6 @@
 import os
 
-from src.app import create_app
+from src import create_app
 
 env_name = os.environ['FLASK_ENV']
 
