@@ -10,6 +10,7 @@ gunicorn = "*"
 psycopg2 = "*"
 flask-jwt-extended = "*"
 livereload = "*"
+flask-wtf = "*"
 
 [dev-packages]
 
