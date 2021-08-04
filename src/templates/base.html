@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:image" content="assets/img/thebaton_logo_twitter.png">
+    <meta name="twitter:image" content="assets/img/thebaton_logo_twitter.png">
+    <meta name="twitter:description" content="TheBaton">
+    <meta name="description" content="TheBaton">
+    <meta name="twitter:title" content="TheBaton">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+
     <link rel="apple-touch-icon" sizes="180x180" href="static/logo-fav/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="static/logo-fav/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="static/logo-fav/favicon-16x16.png">
     <link rel="manifest" href="static/logo-fav/site.webmanifest">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     
     {% block title %}
@@ -22,17 +33,21 @@
     <nav>
         <div class="uppernav">
             <div class="left">
+                <!--
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-search"></i>
                 <i class="fas fa-user"></i>
+                -->
             </div>
             <div class="center">
                 <img src="{{ url_for('static', filename='logo-fav/thebaton_logo_1000x160.png') }}" alt="TheBaton Logo">
             </div>
             <div class="right">
+                <!--
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-facebook-f"></i>
                 <i class="fab fa-linkedin-in"></i>
+                -->
             </div>
         </div>
         <div class="lowernav">
@@ -47,15 +62,51 @@
         <hr>
     </nav>
     <div class="hero-body">
-        <div class="container has-text-centered">
+        <div class="has-text-centered">
 
            {% block content %}
            {% endblock %}
 
         </div>
     </div>
-    <footer>
 
-    </footer>
+    <!-- Start: Footer Dark -->
+    <footer class="footer-dark">
+        <div class="container">
+            <div class="row">
+                <!-- Start: Services -->
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div><!-- End: Services -->
+                <!-- Start: About -->
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div><!-- End: About -->
+                <!-- Start: Footer Text -->
+                <div class="col-md-6 item text">
+                    <h3>Company Name</h3>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                </div><!-- End: Footer Text -->
+                <!-- Start: Social Icons -->
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div><!-- End: Social Icons -->
+            </div><!-- Start: Copyright -->
+            <p class="copyright">Company Name © 2021</p><!-- End: Copyright -->
+        </div>
+    </footer><!-- End: Footer Dark -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    
+
 </body>
 </html>

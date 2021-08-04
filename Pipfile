@@ -11,6 +11,7 @@ psycopg2 = "*"
 flask-jwt-extended = "*"
 livereload = "*"
 flask-wtf = "*"
+email-validator = "*"
 
 [dev-packages]
 
