@@ -1,4 +1,5 @@
 import os
+import datetime
 
 class Development(object):
     """
@@ -9,6 +10,13 @@ class Development(object):
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     SECRET_KEY = os.environ['SECRET_KEY']
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
+    JWT_TOKEN_LOCATION = ["cookies", "headers", "query_string"]
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=15)
+    JWT_SECRET_KEY = os.environ['SECRET_KEY']
+    JWT_COOKIE_SECURE = False
+    JWT_SESSION_COOKIE = False
+    JWT_QUERY_STRING_NAME = "token"
 
 class Production(object):
     """
@@ -23,6 +31,13 @@ class Production(object):
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     SQLALCHEMY_DATABASE_URI = uri
     SECRET_KEY = os.environ['SECRET_KEY']
+
+    JWT_TOKEN_LOCATION = ["cookies", "headers", "query_string"]
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=15)
+    JWT_SECRET_KEY = os.environ['SECRET_KEY']
+    JWT_COOKIE_SECURE = True
+    JWT_SESSION_COOKIE = False
+    JWT_QUERY_STRING_NAME = "token"
 
 app_config = {
     'development': Development,

@@ -22,6 +22,26 @@ html {
     
 }
 
+h1,h2,h3,h4,h5 {
+  overflow: hidden;
+}
+
+.alert {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+}
+
+.form-group {
+  overflow: hidden;
+}
+.form-control {
+  font-size: unset;
+}
+.form-check input[type="checkbox"] {
+  height: 15px
+}
+
 nav {
     padding-inline: 1.5rem;
     margin-block-end: 0.8rem;

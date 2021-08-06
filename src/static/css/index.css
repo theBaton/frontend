@@ -258,10 +258,6 @@
 }
 
 
-.subscribe-flex .news-flex .wrapper-3 form{
-
-}
-
 .subscribe-flex .news-flex .wrapper-3 button{
     font-size: clamp(0.8rem,1vw,1rem);
     letter-spacing: clamp(1.3px,0.1vw,1.6px);
@@ -284,7 +280,6 @@
     .subscribe-flex .news-flex .wrapper-2 {
         align-items: flex-start;
     }
-
 }
 
 @media only screen and (min-width: 1024px) {
