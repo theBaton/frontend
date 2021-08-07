@@ -1,6 +1,6 @@
 from flask import jsonify, request, make_response, Blueprint, flash, redirect, render_template, url_for
 from ..models.UserModel import User
-from ..models.BlogpostModel import Blogpost
+#from ..models.BlogpostModel import Blogpost
 from ..models import db
 from sqlalchemy import desc
 import os
@@ -32,8 +32,8 @@ def refresh_expiring_jwts(response):
 @user_api.route("/")
 @user_api.route("/index")
 def index():
-    recent_articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
-    return render_template('index.html', recent_articles=recent_articles)
+    #recent_articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
+    return render_template('index.html')
 
 
 @user_api.route("/about")
@@ -107,4 +107,10 @@ def logout():
 def articles():
     return render_template('articles.html')
 
+@user_api.route('/articles/<public_id>', methods=['GET'])
+def articles_blogpost(public_id):
+
+    #blogpost = Blogpost.query.filter_by(public_id=public_id).first()
+
+    return render_template('articles.html')
 
