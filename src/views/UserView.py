@@ -71,7 +71,7 @@ def login():
         if user:
             if check_password_hash(user.password, form.password.data):
 
-                roles_list = user.roles.split("+")
+                roles_list = user.role.split("+")
 
                 additional_claims = {
                     "name" : user.name,
@@ -102,6 +102,10 @@ def logout():
     flash('You have been logged out!', 'success')
     return redirect(url_for('user_api.index'))
 
+@user_api.route("/forgot-password", methods=['GET', 'POST'])
+def forgot_password():
+
+    return redirect(url_for('user_api.index'))
 
 @user_api.route('/articles', methods=['GET'])
 def articles():
