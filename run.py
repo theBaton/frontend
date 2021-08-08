@@ -8,7 +8,6 @@ app = create_app(env_name)
 
 if __name__ == '__main__':
 
-    
     if env_name == 'development':
         from livereload import Server
 
