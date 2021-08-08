@@ -47,49 +47,17 @@
         <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2>
     </section>
     <section class="recart-grid">
+        {% for article in recent_articles %}
         <article class="recart-element">
-          
+            <a href="/articles/{{ article.public_id }}">
             <img src="https://picsum.photos/400/225" alt="article thumbnail">
             <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
+                <h3>{{ article.title }}</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
             </div>
+            </a>
         </article>
-        <article class="recart-element">
-            <img src="https://picsum.photos/401/225" alt="article thumbnail">
-            <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
-            </div>
-        </article>
-        <article class="recart-element">
-            <img src="https://picsum.photos/402/225" alt="article thumbnail">
-            <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
-            </div>
-        </article>
-        <article class="recart-element">
-            <img src="https://picsum.photos/400/226" alt="article thumbnail">
-            <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
-            </div>
-        </article>
-        <article class="recart-element">
-            <img src="https://picsum.photos/400/227" alt="article thumbnail">
-            <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
-            </div>
-        </article>
-        <article class="recart-element">
-            <img src="https://picsum.photos/400/224" alt="article thumbnail">
-            <div class="container">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
-            </div>
-        </article>
+        {% endfor %}
     </section>
     <section class="recart-btn">
         <button><a href="/articles"> READ MORE</a></button>

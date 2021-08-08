@@ -3,13 +3,13 @@ from . import db
 
 class Blogpost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    public_id = db.Column(db.Integer, unique=True, nullable=False)
-    cover_image = db.Column(db.String)
+    public_id = db.Column(db.String, unique=True, nullable=False)
+    cover_image = db.Column(db.String, default='static/images/default_cover.jpg')
     title = db.Column(db.String, nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_modified = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.public_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.public_id'))
     
 
     def __repr__(self):

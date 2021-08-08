@@ -1,4 +1,4 @@
-from flask import jsonify, request, make_response, Blueprint, flash, redirect, render_template, url_for
+from flask import jsonify, request, make_response, Blueprint, flash, redirect, render_template, url_for, render_template_string
 from ..models.UserModel import User
 from ..models.BlogpostModel import Blogpost
 from ..models import db
@@ -51,7 +51,7 @@ def register():
             public_id = str(uuid.uuid4()),
             email = form.email.data, 
             password = hashed_password,
-            role='superadmin'
+            role='user+staff+superadmin'
             )
 
         db.session.add(user)
@@ -111,6 +111,17 @@ def articles():
 def articles_blogpost(public_id):
 
     blogpost = Blogpost.query.filter_by(public_id=public_id).first()
-    
-    return render_template('articles.html')
 
+    return render_template_string(blogpost.content, article_post=blogpost)
+
+@user_api.route('/editorials', methods=['GET'])
+def editorials():
+    return render_template('editorials.html')
+
+@user_api.route('/podcasts', methods=['GET'])
+def podcasts():
+    return render_template('podcasts.html')
+
+@user_api.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact.html')
