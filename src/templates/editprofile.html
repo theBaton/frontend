@@ -12,15 +12,15 @@
     <form method="post">
         <h2 class="text-center">Edit Profile</h2><label>Label</label>
         <div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Full Name" value="Name"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Email"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Bio"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Full Name" value="{% if profile.name %}{{ profile.name }}{% endif %}"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Email" value="{% if profile.email %}{{ profile.email }}{% endif %}"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Bio" value="{% if profile.bio %}{{ profile.bio }}{% endif %}"></div>
         </div><label>Socials</label>
         <div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="LinkedIn"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Instagram"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Facebook"></div>
-            <div class="form-group"><input class="form-control" type="text" placeholder="Twitter"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="LinkedIn" value="{% if profile.linkedin %}{{ profile.linkedin }}{% endif %}"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Instagram" value="{% if profile.instagram %}{{ profile.instagram }}{% endif %}"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Facebook" value="{% if profile.facebook %}{{ profile.facebook }}{% endif %}"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Twitter" value="{% if profile.twitter %}{{ profile.twitter }}{% endif %}"></div>
         </div><label>Change Password</label>
         <div>
             <div class="form-group"><input class="form-control" type="text" placeholder="Current Password"></div>

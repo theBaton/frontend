@@ -1,4 +1,5 @@
 from flask import jsonify, request, make_response, Blueprint, flash, redirect, render_template, url_for, render_template_string
+from flask_jwt_extended.utils import decode_token
 from ..models.UserModel import User
 from ..models.BlogpostModel import Blogpost
 from ..models import db
@@ -7,14 +8,13 @@ import os
 import uuid
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ProfileEditForm
 from . import jwt
 from flask_jwt_extended import create_access_token, jwt_required, set_access_cookies, unset_jwt_cookies, get_jwt, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
-from .danger import superadmin_required, staff_required
+from .danger import superadmin_required, staff_required, generate_jwt_access_token
 
 user_api = Blueprint('user_api', __name__)
-
 
 @user_api.after_request
 def refresh_expiring_jwts(response):
@@ -71,22 +71,12 @@ def login():
         if user:
             if check_password_hash(user.password, form.password.data):
 
-                roles_list = user.role.split("+")
-
-                additional_claims = {
-                    "name" : user.name,
-                    "email" : user.email,
-                    "email_verified" : user.email_verified,
-                    "image_file" : user.image_file,
-                    "roles" : roles_list 
-                }
-
-                response = jsonify({"msg": "login successful"})
-                access_token = create_access_token(identity=user.public_id, additional_claims=additional_claims)
+                response = make_response(redirect(url_for('user_api.index')))
+                access_token = generate_jwt_access_token(user)
                 set_access_cookies(response, access_token)
                 flash('You have been logged in!', 'success')
                 
-                return redirect(url_for('user_api.index'))
+                return response
 
             flash('Login Unsuccessful. Please check your password', 'danger')
 
@@ -97,15 +87,25 @@ def login():
 
 @user_api.route("/logout", methods=['GET', 'POST'])
 def logout():
-    response = jsonify({"msg": "logout successful"})
+    response = make_response(redirect(url_for('user_api.index')))
     unset_jwt_cookies(response)
     flash('You have been logged out!', 'success')
-    return redirect(url_for('user_api.index'))
+    return response
 
 @user_api.route("/forgot-password", methods=['GET', 'POST'])
 def forgot_password():
 
     return redirect(url_for('user_api.index'))
+
+@user_api.route("/change-password", methods=['GET', 'POST'])
+def forgot_password():
+
+    ##---##
+
+    response = make_response(redirect(url_for('user_api.index')))
+    unset_jwt_cookies(response)
+    flash('Password changed successfully, please login again!', 'success')
+    return response
 
 @user_api.route('/articles', methods=['GET'])
 def articles():
@@ -130,11 +130,38 @@ def podcasts():
 def contact():
     return render_template('contact.html')
 
-@user_api.route('/profile-edit', methods=['GET'])
+@user_api.route('/profile-edit', methods=['GET', 'POST', 'PUT'])
 @jwt_required()
 def profile_edit():
-    claims = get_jwt
-    return render_template('editprofile.html')
+    form = ProfileEditForm()
+    claims = get_jwt()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(public_id=claims['public_id']).first()
+        user.name = form.name.data
+        user.bio = form.bio.data
+        user.linkedin = form.linkedin.data
+        user.facebook = form.facebook.data
+        user.twitter = form.twitter.data
+        user.instagram = form.instagram.data
+        
+        if form.email.data != user.email:
+            user.email = form.email.data
+            user.email_verified = False
+        
+        db.session.commit()
+
+        user = User.query.filter_by(public_id=claims['public_id']).first()
+        
+        access_token = generate_jwt_access_token(user)
+        
+        response = make_response(redirect(url_for('user_api.index')))
+        set_access_cookies(response, access_token)
+        flash('Profile updated successfully', 'success')
+        return response
+
+
+    return render_template('editprofile.html', profile=claims)
 
 @user_api.route('/user/<name>', methods=['GET'])
 def profile(name):
