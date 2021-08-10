@@ -116,7 +116,7 @@ def articles_blogpost(public_id):
 
     blogpost = Blogpost.query.filter_by(public_id=public_id).first()
 
-    return render_template_string(blogpost.content, article_post=blogpost)
+    return render_template('blogpost.html', article_post=blogpost)
 
 @user_api.route('/editorials', methods=['GET'])
 def editorials():
@@ -129,3 +129,16 @@ def podcasts():
 @user_api.route('/contact', methods=['GET'])
 def contact():
     return render_template('contact.html')
+
+@user_api.route('/profile-edit', methods=['GET'])
+@jwt_required()
+def profile_edit():
+    claims = get_jwt
+    return render_template('editprofile.html')
+
+@user_api.route('/user/<name>', methods=['GET'])
+def profile(name):
+    name_with_spaces = name.replace("-", " ")
+    profile = User.query.filter_by(name=name_with_spaces)
+    return render_template('profile.html', profile = profile)
+

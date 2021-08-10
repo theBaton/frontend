@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+<title>TheBaton - Edit Profile</title>
+<link rel="stylesheet" href="static/css/editprofile.css">
+
+{% endblock %}
+
+{% block content %}
+<section class="contact-clean">
+    <form method="post">
+        <h2 class="text-center">Edit Profile</h2><label>Label</label>
+        <div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Full Name" value="Name"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Email"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Bio"></div>
+        </div><label>Socials</label>
+        <div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="LinkedIn"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Instagram"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Facebook"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Twitter"></div>
+        </div><label>Change Password</label>
+        <div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Current Password"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="New Password"></div>
+            <div class="form-group"><input class="form-control" type="text" placeholder="Confirm Password"></div>
+        </div>
+        <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
+    </form>
+</section>
+{% endblock %}
