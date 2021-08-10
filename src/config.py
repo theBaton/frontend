@@ -18,6 +18,8 @@ class Development(object):
     JWT_SESSION_COOKIE = False
     JWT_QUERY_STRING_NAME = "token"
 
+    JWT_COOKIE_SAMESITE = "Lax"
+
 class Production(object):
     """
     Production environment configurations
@@ -38,6 +40,8 @@ class Production(object):
     JWT_COOKIE_SECURE = True
     JWT_SESSION_COOKIE = False
     JWT_QUERY_STRING_NAME = "token"
+
+    JWT_COOKIE_SAMESITE = "Lax"
 
 app_config = {
     'development': Development,
