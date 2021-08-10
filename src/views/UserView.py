@@ -83,7 +83,7 @@ def login():
 
                 response = jsonify({"msg": "login successful"})
                 access_token = create_access_token(identity=user.public_id, additional_claims=additional_claims)
-                set_access_cookies(response, access_token, max_age=86400)
+                set_access_cookies(response, access_token)
                 flash('You have been logged in!', 'success')
                 
                 return redirect(url_for('user_api.index'))

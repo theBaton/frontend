@@ -36,7 +36,7 @@ class Production(object):
     SECRET_KEY = os.environ['SECRET_KEY']
 
     JWT_TOKEN_LOCATION = ["cookies", "headers", "query_string"]
-    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=15)
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(hours=2)
     JWT_SECRET_KEY = os.environ['SECRET_KEY']
     JWT_COOKIE_SECURE = True
     JWT_SESSION_COOKIE = False
