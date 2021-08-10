@@ -18,7 +18,7 @@ class Development(object):
     JWT_SESSION_COOKIE = False
     JWT_QUERY_STRING_NAME = "token"
 
-    JWT_COOKIE_SAMESITE = "Lax"
+    JWT_COOKIE_SAMESITE = "Strict"
     JWT_ACCESS_COOKIE_NAME = 'Cookie'
 
 class Production(object):
@@ -42,7 +42,7 @@ class Production(object):
     JWT_SESSION_COOKIE = False
     JWT_QUERY_STRING_NAME = "token"
 
-    JWT_COOKIE_SAMESITE = "Lax"
+    JWT_COOKIE_SAMESITE = "Strict"
     JWT_ACCESS_COOKIE_NAME = 'Cookie'
 
 app_config = {
