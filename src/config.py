@@ -19,6 +19,7 @@ class Development(object):
     JWT_QUERY_STRING_NAME = "token"
 
     JWT_COOKIE_SAMESITE = "Lax"
+    JWT_ACCESS_COOKIE_NAME = 'Cookie'
 
 class Production(object):
     """
@@ -42,6 +43,7 @@ class Production(object):
     JWT_QUERY_STRING_NAME = "token"
 
     JWT_COOKIE_SAMESITE = "Lax"
+    JWT_ACCESS_COOKIE_NAME = 'Cookie'
 
 app_config = {
     'development': Development,
