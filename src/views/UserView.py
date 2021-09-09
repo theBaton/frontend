@@ -98,7 +98,7 @@ def forgot_password():
     return redirect(url_for('user_api.index'))
 
 @user_api.route("/change-password", methods=['GET', 'POST'])
-def forgot_password():
+def change_password():
 
     ##---##
 
@@ -107,8 +107,9 @@ def forgot_password():
     flash('Password changed successfully, please login again!', 'success')
     return response
 
-@user_api.route('/articles', methods=['GET'])
+@user_api.route('/articles/', methods=['GET'])
 def articles():
+    articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
     return render_template('articles.html')
 
 @user_api.route('/articles/<public_id>', methods=['GET'])

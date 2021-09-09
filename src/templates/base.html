@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Navigation-Clean.css') }}">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     
@@ -30,37 +31,20 @@
 
 </head>
 <body>
-    <nav>
-        <div class="uppernav">
-            <div class="left">
-                <!--
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-search"></i>
-                <i class="fas fa-user"></i>
-                -->
+        <!-- Start: Navigation Clean -->
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='logo-fav/thebaton_logo_1000x160.png') }}" alt="TheBaton Logo"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.articles') }}">Articles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.contact') }}" >Contact</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="center">
-                <img src="{{ url_for('static', filename='logo-fav/thebaton_logo_1000x160.png') }}" alt="TheBaton Logo">
-            </div>
-            <div class="right">
-                <!--
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-linkedin-in"></i>
-                -->
-            </div>
-        </div>
-        <div class="lowernav">
-            <ul class="navlinkbox">
-                <li><a href="{{ url_for('user_api.index') }}" class="navlink">Home</a></li>
-                <li><a href="{{ url_for('user_api.articles') }}" class="navlink">Articles</a></li>
-                <li><a href="{{ url_for('user_api.editorials') }}" class="navlink">Editorials</a></li>
-                <li><a href="{{ url_for('user_api.podcasts') }}" class="navlink"></a>Podcasts</li>
-                <li><a href="{{ url_for('user_api.contact') }}" class="navlink"></a>Contact</li>
-            </ul>
-        </div>
-        <hr>
-    </nav>
+        </nav><!-- End: Navigation Clean -->
     <div class="hero-body">
         <div class="has-text-centered">
             {% with messages = get_flashed_messages(with_categories=true) %}

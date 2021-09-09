@@ -48,62 +48,23 @@ nav {
     margin-block-end: 0.8rem;
 }
 
-.uppernav {
-    display: flex;
+.navbar-brand img {
+  max-width: 200px
+}
+@media (min-width:767px) {
+  .navbar-expand-md>.container,
+  .navbar-expand-md>.container-fluid,
+  .navbar-expand-md>.container-lg,
+  .navbar-expand-md>.container-md,
+  .navbar-expand-md>.container-sm,
+  .navbar-expand-md>.container-xl {
+    -ms-flex-wrap:nowrap;
+    flex-wrap:nowrap;
     flex-direction: column;
-    justify-content: center;
-    font-size: clamp(1.2rem,1.45rem,1.8rem);
-    padding-block-start: 1rem;
-
-}
-.uppernav .center {
-    padding-block-start: 1rem;
-    align-self: center;
-}
-
-.uppernav .center img {
-    width: clamp(7.5rem,16rem,23.75rem);
-    vertical-align: unset;
-}
-  
-.uppernav .left {
-    align-self: flex-end;
-    display: flex;
-    width: 6rem;
-    justify-content: space-between;
-}
-  
-.uppernav .right {
-    display: none;
   }
-  
 
-.lowernav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.lowernav .navlinkbox, .lowernav .navlink {
-    list-style: none;
-    text-decoration: none !important;
-    color: var(--clr-secondary-text);
-}
-  
-.lowernav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-inline: 0px;
-    max-width: 100%;
-    margin-bottom: unset;
-}
-
-.lowernav li {
-    padding-inline: clamp(0.5rem,1.4rem,1.875rem);
-    padding-block: 0.2rem;
-}
   
 hr {
     color: var(--clr-background);
@@ -207,42 +168,19 @@ hr {
   }
   
 @media only screen and (min-width: 768px) {
-    .lowernav {
-        font-size: clamp(0.8rem,1.2vw,1.5rem);
-    }
+
 }
 
 @media only screen and (min-width: 768px){
     :root {
         font-size: 18px;
     }
-    .uppernav .center img {
-        width: clamp(10rem,10vw,14rem);
-    }
+
     nav {
         margin-block-end: 0rem
     }
     
-    .uppernav {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        padding-block-start: clamp(0.6rem,1vw,1.3rem)
-    }
-    .uppernav .right {
-        display: flex;
-        width: 6rem;
-        justify-content: space-between;
-    }
-
-    .uppernav .left {
-        align-self:unset;
-        padding-block: 0;
-    }
-    .uppernav .center {
-        padding-block-start: 0;
-    }
+    
 }
 
   
