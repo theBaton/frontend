@@ -37,10 +37,10 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.articles') }}">Articles</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user_api.contact') }}" >Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.articles, page_id=1') }}">Articles</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.contact') }}" >Contact</a></li>
                     </ul>
                 </div>
             </div>

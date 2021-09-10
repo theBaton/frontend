@@ -107,10 +107,13 @@ def change_password():
     flash('Password changed successfully, please login again!', 'success')
     return response
 
-@user_api.route('/articles/', methods=['GET'])
-def articles():
-    articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
-    return render_template('articles.html')
+@user_api.route('/articles/<page_id>', methods=['GET'])
+def articles(page_id=1):
+    articles_all = Blogpost.query.order_by(desc('date_modified'))
+    page_id = int(page_id)
+    articles = [articles_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+    
+    return render_template('articles.html') #articles=articles
 
 @user_api.route('/articles/<public_id>', methods=['GET'])
 def articles_blogpost(public_id):

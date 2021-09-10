@@ -48,6 +48,10 @@ nav {
     margin-block-end: 0.8rem;
 }
 
+.nav-link {
+  padding: 0;
+}
+
 .navbar-brand img {
   max-width: 200px
 }
