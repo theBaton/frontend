@@ -12,5 +12,4 @@ if __name__ == '__main__':
         from livereload import Server
         server = Server(app.wsgi_app)
         server.serve()
-    # run app
     app.run()

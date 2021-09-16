@@ -50,6 +50,10 @@
     line-height: 1.45;
   }
   
+  .text {
+    margin-block-end: 5rem;
+  }
+
   @media (min-width:768px) {
     .article-clean .text p {
       font-size: 16px;
@@ -81,5 +85,4 @@
     margin-bottom: 12px;
     max-width: 100%;
   }
-  
   

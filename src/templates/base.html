@@ -13,9 +13,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="static/logo-fav/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/logo-fav/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/logo-fav/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='logo-fav/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo-fav/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='logo-fav/favicon-16x16.png') }}">
     <link rel="manifest" href="static/logo-fav/site.webmanifest">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.articles, page_id=1') }}">Articles</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.articles') }}">Articles</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.contact') }}" >Contact</a></li>

@@ -3,7 +3,7 @@
 
 {% block title %}
 <title>TheBaton - {{ article_post.title }}</title>
-<link rel="stylesheet" href="static/css/blogpost.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/blogpost.css') }}">
 
 {% endblock %}
 {% block content %}
@@ -15,19 +15,14 @@
                     <!-- Start: Intro -->
                     <div class="text-center intro">
                         <h1 class="text-center">{{ article_post.title }}</h1><!-- Start: Date and Author -->
-                        <p class="text-center"><span class="by">by</span> <a href="#">{{ article_post.public_id }}</a><span class="date">{{ article_post.date_modified }}</span></p><!-- End: Date and Author --><img class="img-fluid" src="https://picsum.photos/1440/900">
+                        <p class="text-center"><span class="by">by</span> <a href="#">{{ article_post.author.name }}</a><!--<span class="date">{{ article_post.date_modified }}</span></p>--><!-- End: Date and Author --><img class="img-fluid" src="https://picsum.photos/1440/900">
                     </div><!-- End: Intro -->
                     <!-- Start: Text -->
                     <div class="text">
 
-                        {{ artcile_post.content }}
-                        <!-- 
-                            <p>Sed lobortis mi. Suspendisse vel placerat ligula. <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac lacus. <strong>Ut vehicula rhoncus</strong> elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit <em>pulvinar dict</em> vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                            <h2>Aliquam In Arcu </h2>
-                            <p>Suspendisse vel placerat ligula. Vivamus ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Suspendisse vel placerat ligula. Vivamus ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                        -->
+                        {% block blogpost %}
+                        {% endblock blogpost %}
+            
                     </div><!-- End: Text -->
                 </div>
             </div>

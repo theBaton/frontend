@@ -43,10 +43,11 @@ def generate_jwt_access_token(user):
         "bio" : user.bio,
         "email" : user.email,
         "email_verified" : user.email_verified,
-        "image_file" : user.image_file,
+        "profile_picture" : user.profile_picture,
+        "profile_cover_picture" : user.profile_cover_picture,
         "public_id" : user.public_id,
         "roles" : roles_list,
-        "socials": {"facebook" : user.facebook, "instagram" : user.instagram, "linkedin" : user.linkedin, "twitter" : user.twitter}
+        "socials": {"facebook" : user.socials_facebook, "instagram" : user.socials_instagram, "linkedin" : user.socials_linkedin, "twitter" : user.socials_twitter}
 
     }
 

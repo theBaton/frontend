@@ -6,6 +6,7 @@ from ..models.UserModel import User
 
 
 class RegistrationForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
@@ -22,6 +23,7 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
+    
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])

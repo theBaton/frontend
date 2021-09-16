@@ -2,6 +2,7 @@ from flask import jsonify, request, make_response, Blueprint, flash, redirect, r
 from flask_jwt_extended.utils import decode_token
 from ..models.UserModel import User
 from ..models.BlogpostModel import Blogpost
+from ..models.EditorialModel import Editorial
 from ..models import db
 from sqlalchemy import desc
 import os
@@ -29,6 +30,10 @@ def refresh_expiring_jwts(response):
     except (RuntimeError, KeyError):
         return response
 
+@user_api.context_processor
+def handle_context():
+    return dict(req_args = request.args, int = int, len = len)
+
 @user_api.route("/")
 @user_api.route("/index")
 def index():
@@ -49,6 +54,7 @@ def register():
 
         user = User(
             public_id = str(uuid.uuid4()),
+            name = form.name.data,
             email = form.email.data, 
             password = hashed_password,
             role='user+staff+superadmin'
@@ -107,24 +113,63 @@ def change_password():
     flash('Password changed successfully, please login again!', 'success')
     return response
 
-@user_api.route('/articles/<page_id>', methods=['GET'])
-def articles(page_id=1):
+@user_api.route('/articles', methods=['GET'])
+def articles():
     articles_all = Blogpost.query.order_by(desc('date_modified'))
-    page_id = int(page_id)
-    articles = [articles_all[i] for i in range(9*(page_id - 1), 9*page_id)]
-    
-    return render_template('articles.html') #articles=articles
+    total_articles = Blogpost.query.count()
+    page_id = request.args.get('page')
+    if not page_id:
+        page_id = 1
+    try:
+        page_id = int(page_id)
+        articles = [articles_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+    except ValueError:
+        articles = [articles_all[i] for i in range(0, 9)]
+
+    except IndexError:
+        articles = [articles_all[i] for i in range(9*(page_id - 1), total_articles)]
+
+    return render_template('articles.html', articles=articles)
 
 @user_api.route('/articles/<public_id>', methods=['GET'])
 def articles_blogpost(public_id):
 
     blogpost = Blogpost.query.filter_by(public_id=public_id).first()
 
-    return render_template('blogpost.html', article_post=blogpost)
+    return render_template_string(source = blogpost.content, article_post=blogpost)
 
 @user_api.route('/editorials', methods=['GET'])
 def editorials():
-    return render_template('editorials.html')
+    editorials_all = Editorial.query.order_by(desc('date_modified'))
+    total_editorials = Editorial.query.count()
+    page_id = request.args.get('page')
+    if not page_id:
+        page_id = 1
+    #try:
+    page_id = int(page_id)
+    editorials = [editorials_all[i] for i in range(9*(page_id - 1), total_editorials)]
+    #editorials = [editorials_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+    #except ValueError:
+    #    editorials = [editorials_all[i] for i in range(0, 9)]
+
+    #except IndexError:
+    #    editorials = [editorials_all[i] for i in range(9*(page_id - 1), total_editorials)]
+
+    return render_template('editorials.html', editorial_post=editorials)
+
+@user_api.route('/editorials/<public_id>', methods=['GET'])
+def editorial_post(public_id):
+
+    editorial_post = Editorial.query.filter_by(public_id=public_id).first()
+    toc_string = editorial_post.toc
+    toc_list = toc_string.split(',')
+    toc = [sections.split('--') for sections in toc_list]
+    toc_string_lower = toc_string.lower()
+    toc_string_lower_updated = toc_string_lower.replace('--', ',')
+    toc_string_lower_updated1 = toc_string_lower_updated.replace(' ', '-')
+    toc_id_list = toc_string_lower_updated1.split(',')
+
+    return render_template_string(source = editorial_post.content, editorial_post=editorial_post, toc = toc, toc_id = toc_id_list)
 
 @user_api.route('/podcasts', methods=['GET'])
 def podcasts():

@@ -124,6 +124,7 @@ color: var(--clr-primary-text);
     border-radius: 1em;
     background-color: var(--clr-primary-red);
     transition: all 0.3s ease-in-out;
+    
 }
 
 .recart-btn button:hover {

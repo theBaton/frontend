@@ -10,4 +10,35 @@
 
 {% block content %}
 
+<header class="art">
+    <section class="art-text">
+        <h1>RECENT ARTICLES</h1>
+        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2>
+    </section>
+    <section class="art-grid">
+        {% for article in articles %}
+        <article class="art-element">
+            <a href="/articles/{{ article.public_id }}">
+            <img src="https://picsum.photos/400/225" alt="article thumbnail">
+            <div class="container">
+                <h3>{{ article.title }}</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
+            </div>
+            </a>
+        </article>
+        {% endfor %}
+    </section>
+    <section class="art-btn">
+        
+        {% set current_page_id = req_args.get('page') %}
+        
+        {% if not current_page_id %}
+            {% set page_id = 2 %}
+        {% else %}
+            {% set page_id = int(current_page_id) + 1 %}
+        {% endif %}
+
+        <button><a href="/articles?page={{ page_id }}"> READ MORE</a></button>
+    </section>
+</header>
 {% endblock %}
