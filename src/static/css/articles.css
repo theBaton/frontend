@@ -48,6 +48,13 @@ color: var(--clr-primary-text);
     grid-template-columns: repeat(3,1fr);
 }
 
+@media (min-width:767px) {
+    .art-grid {
+        grid-template-columns: repeat(2,1fr);
+
+    }
+}
+
 .art-element {
     background-color: var(--clr-light-primary);
     border-radius: 0.3em;
