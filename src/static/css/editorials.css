@@ -42,7 +42,7 @@ color: var(--clr-primary-text);
 
 @media (min-width:767px) {
     .art-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(3,1fr);
 
     }
 }
@@ -52,7 +52,7 @@ color: var(--clr-primary-text);
     grid-gap: 5vw;
     padding-block: 3em;
     padding-inline: 5vw;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
 }
 
 .art-element {
