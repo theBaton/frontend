@@ -9,6 +9,7 @@
   height: 4rem;
 }
 .post-heading h2, .post-heading .meta, .post-heading .meta a {
+  text-decoration-color: var(--clr-light-secondary);
   color: var(--clr-light-secondary);
 }
 .post-heading h1 {
