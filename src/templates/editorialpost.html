@@ -4,8 +4,8 @@
 {% block title %}
 <title>TheBaton - {{ editorial_post.title }}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editorialpost.css') }}">
-{{ set title = editorial_post.title }}
-{{ set sub_title = editorial_post.sub_title }}
+{% set title = editorial_post.title %}
+{% set sub_title = editorial_post.sub_title %}
 
 {% endblock %}
 
