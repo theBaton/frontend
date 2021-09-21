@@ -7,9 +7,24 @@
 
     <meta property="og:image" content="assets/img/thebaton_logo_twitter.png">
     <meta name="twitter:image" content="assets/img/thebaton_logo_twitter.png">
-    <meta name="twitter:description" content="TheBaton">
-    <meta name="description" content="TheBaton">
+    {% if title %}
+    <meta name="twitter:title" content="TheBaton - {{ title }}">
+    {% elif page_name %}
+    <meta name="twitter:title" content="TheBaton - {{ page_name }}">
+    {% else %}
     <meta name="twitter:title" content="TheBaton">
+    {% endif %}
+
+    {% if sub_title %}
+        <meta name="twitter:description" content="{{ sub_title }}">
+        <meta name="description" content="{{ sub_title }}">
+    {% elif page_name %}
+        <meta name="twitter:description" content="TheBaton - {{ page_name }}">
+        <meta name="description" content="TheBaton - {{ page_name }}">
+    {% else %}
+        <meta name="twitter:description" content="TheBaton">
+        <meta name="description" content="TheBaton">
+    {% endif %}
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
 

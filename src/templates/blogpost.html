@@ -4,6 +4,8 @@
 {% block title %}
 <title>TheBaton - {{ article_post.title }}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/blogpost.css') }}">
+{{ set title = article_post.title }}
+{{ set sub_title = article_post.sub_title }}
 
 {% endblock %}
 {% block content %}
