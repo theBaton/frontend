@@ -38,7 +38,7 @@ def handle_context():
 @user_api.route("/")
 @user_api.route("/index")
 def index():
-    featured_editorials = Editorial.query.order_by(desc('date_modified')).limit(3)
+    featured_editorials = Editorial.query.order_by(desc('date_modified')).limit(4)
     recent_articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
     return render_template('index.html', recent_articles=recent_articles, featured_editorials = featured_editorials)
 
