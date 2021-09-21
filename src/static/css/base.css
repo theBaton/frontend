@@ -86,10 +86,7 @@ hr {
     color: #f0f9ff;
     background-color: #282d32;
   }
-  
-  .footer-dark p {
-    font-size: 14px;
-  }
+
 
   .footer-dark h3 {
     margin-top: 0;
@@ -136,6 +133,7 @@ hr {
   .footer-dark .item.text p {
     opacity: 0.6;
     margin-bottom: 0;
+    font-size: 14px;
   }
   
   .footer-dark .item.social {
