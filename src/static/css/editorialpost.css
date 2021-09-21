@@ -19,6 +19,10 @@
   margin-top: 25px;
 }
 
+.text-center {
+  overflow: hidden;
+}
+
 .article-dual-column .intro p {
   color: #929292;
   font-size: 12px;

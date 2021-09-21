@@ -7,6 +7,7 @@
     height: 100%;
   }
 
+
   @media (min-width: 768px) and (orientation : landscape) {
     #carousel-1 {
       height: calc(100vh - 82px);
@@ -17,7 +18,8 @@
     position: absolute;
     bottom: 7%;
     left: 5%;
-    color: var(--clr-light-primary)
+    color: var(--clr-light-primary);
+    margin-inline-end: 10%;
   }
   
   .carousel-item {

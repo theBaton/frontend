@@ -7,26 +7,29 @@
 
 {% endblock %}
 {% block content %}
-    <!-- Start: Article Clean -->
-    <section class="article-clean">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
-                    <!-- Start: Intro -->
-                    <div class="text-center intro">
-                        <h1 class="text-center">{{ article_post.title }}</h1><!-- Start: Date and Author -->
-                        <p class="text-center"><span class="by">by</span> <a href="#">{{ article_post.author.name }}</a><!--<span class="date">{{ article_post.date_modified }}</span></p>--><!-- End: Date and Author --><img class="img-fluid" src="https://picsum.photos/1440/900">
-                    </div><!-- End: Intro -->
-                    <!-- Start: Text -->
-                    <div class="text">
-
-                        {% block blogpost %}
-                        {% endblock blogpost %}
-            
-                    </div><!-- End: Text -->
+<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/1440/900');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="post-heading">
+                    <h1><strong>{{ article_post.title }}</strong></h1>
+                    <h2 class="subheading">{{ article_post.sub_title }}</h2><span class="meta">Posted by&nbsp;<a href="#">{{ article_post.author.name }}</a>&nbsp;on {{ article_post.date_posted.strftime('%d %B %Y') }}</span>
                 </div>
             </div>
         </div>
-    </section><!-- End: Article Clean -->
+    </div>
+</header>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto" style="font-family: Montserrat, sans-serif;text-align: justify;">
+                {% block blogpost %}
+                {% endblock blogpost %}
+            </div>
+        </div>
+    </div>
+</article>
 
 {% endblock content%}

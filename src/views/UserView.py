@@ -7,6 +7,7 @@ from ..models import db
 from sqlalchemy import desc
 import os
 import uuid
+
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
 from .forms import RegistrationForm, LoginForm, ProfileEditForm
@@ -32,13 +33,14 @@ def refresh_expiring_jwts(response):
 
 @user_api.context_processor
 def handle_context():
-    return dict(req_args = request.args, int = int, len = len)
+    return dict(req_args = request.args, int = int, len = len, datetime=datetime, str = str)
 
 @user_api.route("/")
 @user_api.route("/index")
 def index():
+    featured_editorials = Editorial.query.order_by(desc('date_modified')).limit(3)
     recent_articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
-    return render_template('index.html', recent_articles=recent_articles)
+    return render_template('index.html', recent_articles=recent_articles, featured_editorials = featured_editorials)
 
 
 @user_api.route("/about")
