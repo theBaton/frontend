@@ -87,6 +87,10 @@ hr {
     background-color: #282d32;
   }
   
+  .footer-dark p {
+    font-size: 14px;
+  }
+
   .footer-dark h3 {
     margin-top: 0;
     margin-bottom: 12px;
