@@ -83,31 +83,31 @@
             <div class="row">
                 <!-- Start: Services -->
                 <div class="col-sm-6 col-md-3 item">
-                    <h3>Services</h3>
+                    <h3>Pages</h3>
                     <ul>
-                        <li><a href="#">Web design</a></li>
-                        <li><a href="#">Development</a></li>
-                        <li><a href="#">Hosting</a></li>
+                        <li><a href="{{ url_for('user_api.index') }}">Home</a></li>
+                        <li><a href="{{ url_for('user_api.articles') }}">Articles</a></li>
+                        <li><a href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
                     </ul>
                 </div><!-- End: Services -->
                 <!-- Start: About -->
                 <div class="col-sm-6 col-md-3 item">
-                    <h3>About</h3>
+                    <h3>User Management</h3>
                     <ul>
-                        <li><a href="#">Company</a></li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="{{ url_for('user_api.register') }}">Register</a></li>
+                        <li><a href="{{ url_for('user_api.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('user_api.logout') }}">Logout</a></li>
                     </ul>
                 </div><!-- End: About -->
                 <!-- Start: Footer Text -->
                 <div class="col-md-6 item text">
-                    <h3>Company Name</h3>
-                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    <h3>TheBaton</h3>
+                    <p>TheBaton provides an open-ended, peer-reviewed forum for scholarly discussions of legal and soci0-political issues of importance. We seek to promote conscientious and honest dialogue on issues affecting the global population through publishing pieces written by students and practitioners.</p>
                 </div><!-- End: Footer Text -->
                 <!-- Start: Social Icons -->
-                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div><!-- End: Social Icons -->
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-linkedin"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div><!-- End: Social Icons -->
             </div><!-- Start: Copyright -->
-            <p class="copyright">Company Name © 2021</p><!-- End: Copyright -->
+            <p class="copyright">TheBaton © 2021</p><!-- End: Copyright -->
         </div>
     </footer><!-- End: Footer Dark -->
 
