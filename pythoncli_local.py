@@ -22,9 +22,9 @@ def thefunction():
     
 
     user = User(public_id = str(uuid.uuid4()), name = "Admin Bhai", email = "admin@blog.com", password = hashed_password, role='user+staff+superadmin')
-    user1 = User(public_id = str(uuid.uuid4()), name = "Amaan Alam", email = "admin_amaan@blog.com", password = hashed_password, role='user+staff+superadmin')
-    user2 = User(public_id = str(uuid.uuid4()), name = "Urja Toteja", email = "admin_urja@blog.com", password = hashed_password, role='user+staff+superadmin')
-    user3 = User(public_id = str(uuid.uuid4()), name = "Saba Alam", email = "admin_saba@blog.com", password = hashed_password, role='user+staff+superadmin')
+    user1 = User(public_id = str(uuid.uuid4()), name = "Amaan Alam", email = "amaanalam0@gmail.com", password = hashed_password, role='user+staff+superadmin')
+    user2 = User(public_id = str(uuid.uuid4()), name = "Urja Toteja", email = "urjatoteja44@blog.com", password = hashed_password, role='user+staff+superadmin')
+    user3 = User(public_id = str(uuid.uuid4()), name = "Saba Alam", email = "sabaalam9@blog.com", password = hashed_password, role='user+staff+superadmin')
     user4 = User(public_id = str(uuid.uuid4()), name = "User1 (admin)", email = "user1@blog.com", password = hashed_password, role='user+staff+superadmin')
     user5 = User(public_id = str(uuid.uuid4()), name = "User2 (staff)", email = "user2@blog.com", password = hashed_password, role='user+staff')
     user6 = User(public_id = str(uuid.uuid4()), name = "User3", email = "user3@blog.com", password = hashed_password, role='user')
