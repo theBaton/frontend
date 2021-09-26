@@ -14,7 +14,7 @@
   <div class="carousel-inner">
     
         <div class="carousel-item active"><a href="/editorials/{{ featured_editorials[0].public_id }}">
-            <img class="w-100 d-block" src="https://picsum.photos/1440/900" alt="Slide Image">
+            <img class="w-100 d-block" src="{{ featured_editorials[0].cover_image }}" alt="Slide Image">
                 <div class="overlay-text-container">
                     <h1>{{ featured_editorials[0].title }}</h1>
                     <em>
@@ -28,7 +28,7 @@
     {% for i in range(1, featured_editorials.count()) %}
       
           <div class="carousel-item"><a href="/editorials/{{ featured_editorials[i].public_id }}">
-              <img class="w-100 d-block" src="https://picsum.photos/1440/900" alt="Slide Image">
+              <img class="w-100 d-block" src="{{ featured_editorials[i].cover_image }}" alt="Slide Image">
                   <div class="overlay-text-container">
                       <h1>{{ featured_editorials[i].title }}</h1>
                       <em>
@@ -54,7 +54,7 @@
 <header class="recart">
     <section class="recart-text">
         <h1>RECENT ARTICLES</h1>
-        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2>
+        <h2>TITLE BTA DO PLS !</h2>
     </section>
     <section class="recart-grid">
         {% for article in recent_articles %}
@@ -63,7 +63,7 @@
             <img src="https://picsum.photos/400/225" alt="article thumbnail">
             <div class="container">
                 <h3>{{ article.title }}</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
+                <p>CTA TITLE - IDHAR KA TITLE BHI BTA DO PLS BHAGWAAN KE LIYE</p>
             </div>
             </a>
         </article>
