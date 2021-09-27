@@ -14,7 +14,7 @@
 <header class="art">
     <section class="art-text">
         <h1>RECENT BLOGS</h1>
-        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2>
+        <!-- <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2> -->
     </section>
     <section class="art-grid">
         {% for blog in blogs %}
@@ -23,7 +23,7 @@
             <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">
                 <h3>{{ blog.title }}</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
+                <p>{{ blog.cta_title }}</p>
             </div>
             </a>
         </article>
