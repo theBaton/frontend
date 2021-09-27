@@ -24,14 +24,18 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-#class UploadForm(FlaskForm):
-#    type = 
+class UploadForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    sub_title = StringField('Sub Title', validators=[DataRequired()])
+    cover_image = StringField('Cover Image Link', validators=[URL()])
+    cta_title = StringField('CTA Title', validators=[DataRequired()])
+    keywords = StringField('Keywords', validators=[DataRequired()])
+    content = StringField('Contents', validators=[DataRequired()])
 
 class ProfileEditForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])

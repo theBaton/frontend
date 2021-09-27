@@ -13,7 +13,6 @@ class Blogpost(db.Model):
     keywords = db.Column(db.String)
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    
 
     def __repr__(self):
         return f"Blogpost('{self.title}', '{self.date_posted}')"
