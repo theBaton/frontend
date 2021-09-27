@@ -53,24 +53,24 @@
 </div>
 <header class="recart">
     <section class="recart-text">
-        <h1>RECENT ARTICLES</h1>
+        <h1>RECENT BLOGS</h1>
         <h2>TITLE BTA DO PLS !</h2>
     </section>
     <section class="recart-grid">
-        {% for article in recent_articles %}
+        {% for blog in recent_blogs %}
         <article class="recart-element">
-            <a href="/articles/{{ article.public_id }}">
-            <img src="https://picsum.photos/400/225" alt="article thumbnail">
+            <a href="/blogs/{{ blog.public_id }}">
+            <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">
-                <h3>{{ article.title }}</h3>
-                <p>CTA TITLE - IDHAR KA TITLE BHI BTA DO PLS BHAGWAAN KE LIYE</p>
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.cta_title }}</p>
             </div>
             </a>
         </article>
         {% endfor %}
     </section>
     <section class="recart-btn">
-        <button><a href="/articles"> READ MORE</a></button>
+        <button><a href="/blogs"> READ MORE</a></button>
     </section>
 </header>
 <header class="subscribe">

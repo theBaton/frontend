@@ -2,9 +2,9 @@
 
 
 {% block title %}
-<title>TheBaton - Articles</title>
-<link rel="stylesheet" href="static/css/articles.css">
-{% set page_name = "Articles" %}
+<title>TheBaton - Blogs</title>
+<link rel="stylesheet" href="static/css/blogs.css">
+{% set page_name = "Blogs" %}
 
 {% endblock %}
 
@@ -13,16 +13,16 @@
 
 <header class="art">
     <section class="art-text">
-        <h1>RECENT ARTICLES</h1>
+        <h1>RECENT BLOGS</h1>
         <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2>
     </section>
     <section class="art-grid">
-        {% for article in articles %}
+        {% for blog in blogs %}
         <article class="art-element">
-            <a href="/articles/{{ article.public_id }}">
-            <img src="https://picsum.photos/400/225" alt="article thumbnail">
+            <a href="/blogs/{{ blog.public_id }}">
+            <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">
-                <h3>{{ article.title }}</h3>
+                <h3>{{ blog.title }}</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
             </div>
             </a>
@@ -39,7 +39,7 @@
             {% set page_id = int(current_page_id) + 1 %}
         {% endif %}
 
-        <button><a href="/articles?page={{ page_id }}"> READ MORE</a></button>
+        <button><a href="/blog?page={{ page_id }}"> READ MORE</a></button>
     </section>
 </header>
 {% endblock %}

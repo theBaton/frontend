@@ -39,8 +39,8 @@ def handle_context():
 @user_api.route("/index")
 def index():
     featured_editorials = Editorial.query.order_by(desc('date_modified')).limit(4)
-    recent_articles = Blogpost.query.order_by(desc('date_modified')).limit(6)
-    return render_template('index.html', recent_articles=recent_articles, featured_editorials = featured_editorials)
+    recent_blogs = Blogpost.query.order_by(desc('date_modified')).limit(6)
+    return render_template('index.html', recent_blogs = recent_blogs, featured_editorials = featured_editorials)
 
 
 @user_api.route("/about")
@@ -115,30 +115,30 @@ def change_password():
     flash('Password changed successfully, please login again!', 'success')
     return response
 
-@user_api.route('/articles', methods=['GET'])
-def articles():
-    articles_all = Blogpost.query.order_by(desc('date_modified'))
-    total_articles = Blogpost.query.count()
+@user_api.route('/blogs', methods=['GET'])
+def blogs():
+    blogs_all = Blogpost.query.order_by(desc('date_modified'))
+    total_blogs = Blogpost.query.count()
     page_id = request.args.get('page')
     if not page_id:
         page_id = 1
     try:
         page_id = int(page_id)
-        articles = [articles_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+        blogs = [blogs_all[i] for i in range(9*(page_id - 1), 9*page_id)]
     except ValueError:
-        articles = [articles_all[i] for i in range(0, 9)]
+        blogs = [blogs_all[i] for i in range(0, 9)]
 
     except IndexError:
-        articles = [articles_all[i] for i in range(9*(page_id - 1), total_articles)]
+        blogs = [blogs_all[i] for i in range(9*(page_id - 1), total_blogs)]
 
-    return render_template('articles.html', articles=articles)
+    return render_template('blogs.html', blogs=blogs)
 
-@user_api.route('/articles/<public_id>', methods=['GET'])
-def articles_blogpost(public_id):
+@user_api.route('/blogs/<public_id>', methods=['GET'])
+def blog_post(public_id):
 
     blogpost = Blogpost.query.filter_by(public_id=public_id).first()
 
-    return render_template_string(source = blogpost.content, article_post=blogpost)
+    return render_template_string(source = blogpost.content, blog_post=blogpost)
 
 @user_api.route('/editorials', methods=['GET'])
 def editorials():

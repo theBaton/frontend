@@ -32,7 +32,7 @@ class LoginForm(FlaskForm):
 class UploadForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     sub_title = StringField('Sub Title', validators=[DataRequired()])
-    cover_image = StringField('Cover Image Link', validators=[URL()])
+    cover_image = StringField('Cover Image Link', validators=[DataRequired(), URL()])
     cta_title = StringField('CTA Title', validators=[DataRequired()])
     keywords = StringField('Keywords', validators=[DataRequired()])
     content = StringField('Contents', validators=[DataRequired()])

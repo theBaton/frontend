@@ -21,7 +21,7 @@
         {% for editorial in editorial_post %}
         <article class="art-element">
             <a href="/editorials/{{ editorial.public_id }}">
-            <img src="https://picsum.photos/400/225" alt="editorial thumbnail">
+            <img src='{{ editorial.cover_image }}' alt="editorial thumbnail">
             <div class="container">
                 <h3>{{ editorial.title }}</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ratione quo.</p>
