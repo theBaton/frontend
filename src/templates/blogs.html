@@ -18,7 +18,7 @@
     </section>
     <section class="art-grid">
         {% for blog in blogs %}
-        <article class="art-element">
+        <article class="art-element" data-tilt>
             <a href="/blogs/{{ blog.public_id }}">
             <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">

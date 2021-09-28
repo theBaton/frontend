@@ -60,7 +60,9 @@ color: var(--clr-primary-text);
     background-color: var(--clr-light-primary);
     border-radius: 0.3em;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.07);
-    transition: all 0.3s ease-in-out;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    /* transition: all 0.3s ease-in-out; */
 }
 .art-element:hover {
     transform: scale(1.1,1.1);
@@ -71,6 +73,7 @@ color: var(--clr-primary-text);
 }
 
 .art-element .container {
+    transform: translateZ(30px);
     padding-inline: clamp(0.2rem,5vw,1.4rem);
     padding-block: clamp(0.2rem,5vw,1rem);
 }
