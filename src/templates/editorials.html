@@ -19,7 +19,7 @@
     </section>
     <section class="art-grid">
         {% for editorial in editorial_post %}
-        <article class="art-element" data-tilt>
+        <article class="art-element" data-tilt data-tilt-max=5>
             <a href="/editorials/{{ editorial.public_id }}">
             <img src='{{ editorial.cover_image }}' alt="editorial thumbnail">
             <div class="container">
