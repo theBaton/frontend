@@ -18,8 +18,8 @@
     </section>
     <section class="art-grid">
         {% for blog in blogs %}
-        <article class="art-element">
-            <a href="/blogs/{{ blog.public_id }}">
+        <article class="art-element" data-tilt data-tilt-max=5>
+            <a href="/blogposts/{{ blog.public_id }}">
             <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">
                 <h3>{{ blog.title }}</h3>
@@ -39,7 +39,7 @@
             {% set page_id = int(current_page_id) + 1 %}
         {% endif %}
 
-        <button><a href="/blog?page={{ page_id }}"> READ MORE</a></button>
+        <button><a href="/blogposts?page={{ page_id }}"> READ MORE</a></button>
     </section>
 </header>
 {% endblock %}
