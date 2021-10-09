@@ -13,12 +13,12 @@
 
 <header class="art">
     <section class="art-text">
-        <h1>RECENT BLOGS</h1>
+        <h1>RECENT BLOGPOSTS</h1>
         <!-- <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor.</h2> -->
     </section>
     <section class="art-grid">
         {% for blog in blogs %}
-        <article class="art-element" data-tilt>
+        <article class="art-element">
             <a href="/blogs/{{ blog.public_id }}">
             <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">

@@ -115,8 +115,8 @@ def change_password():
     flash('Password changed successfully, please login again!', 'success')
     return response
 
-@user_api.route('/blogs', methods=['GET'])
-def blogs():
+@user_api.route('/blogposts', methods=['GET'])
+def blogposts():
     blogs_all = Blogpost.query.order_by(desc('date_modified'))
     total_blogs = Blogpost.query.count()
     page_id = request.args.get('page')
@@ -131,7 +131,7 @@ def blogs():
     except IndexError:
         blogs = [blogs_all[i] for i in range(9*(page_id - 1), total_blogs)]
 
-    return render_template('blogs.html', blogs=blogs)
+    return render_template('blogposts.html', blogs=blogs)
 
 @user_api.route('/blogs/<public_id>', methods=['GET'])
 def blog_post(public_id):

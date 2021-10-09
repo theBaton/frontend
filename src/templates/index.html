@@ -58,7 +58,7 @@
     </section>
     <section class="recart-grid">
         {% for blog in recent_blogs %}
-        <article class="recart-element" data-tilt>
+        <article class="recart-element">
             <a href="/blogs/{{ blog.public_id }}">
             <img src="{{ blog.cover_image }}" alt="blog thumbnail">
             <div class="container">
@@ -86,7 +86,7 @@
                   Subscribe to our Newsletter
               </h2>
               <p>
-                  You wont miss any story! <br> pinky promise.
+                  You wont miss any story!
               </p>
           </div>
           <div class="subs-text-wrap wrapper-3">
