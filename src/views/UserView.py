@@ -133,7 +133,7 @@ def blogposts():
 
     return render_template('blogposts.html', blogs=blogs)
 
-@user_api.route('/blogs/<public_id>', methods=['GET'])
+@user_api.route('/blogposts/<public_id>', methods=['GET'])
 def blog_post(public_id):
 
     blogpost = Blogpost.query.filter_by(public_id=public_id).first()
