@@ -10,7 +10,7 @@ import uuid
 
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
-from .forms import RegistrationForm, LoginForm, ProfileEditForm
+from .forms import RegistrationForm, LoginForm, ProfileEditForm, UploadForm
 from . import jwt
 from flask_jwt_extended import create_access_token, jwt_required, set_access_cookies, unset_jwt_cookies, get_jwt, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -37,5 +37,6 @@ def handle_context():
 
 @profile_api.route("/upload")
 def upload():
-    return render_template('upload_posts.html', title='Upload')
+    form = UploadForm()
+    return render_template('upload_posts.html', title='Upload', form=form)
 
