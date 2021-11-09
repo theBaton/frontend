@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--LINE 284 BOOTSTRAP ALERT HANDLE -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    {% if blogpost %}
+    <title>TheBaton - {{ blogpost.title }}</title>
+    <meta name="description" content="{{ blogpost.cta_title }}">
+    <meta name="keywords" content="{{ blogpost.keywords }}">
+    <meta name="author" content="{{ blogpost.author.name }}">
+    {% elif editorial %}
+    <title>TheBaton - {{ editorial.title }}</title>
+    <meta name="description" content="{{ editorial.cta_title }}">
+    <meta name="keywords" content="{{ editorial.keywords }}">
+    <meta name="author" content="{{ editorial.author.name }}">
+    {% else %}
+    <title>{{ title }}</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    {% endif %}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='logo-fav/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo-fav/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='logo-fav/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='logo-fav/site.webmanifest') }}">
+
+    <!-- Google Analytics - Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJBT985WY3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WJBT985WY3');
+    </script>
+
+    <!-- Google fonts (https://www.google.com/fonts) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="{{ url_for('static', filename='logo-fav/css2.css') }}" rel="stylesheet"> <!-- Body font -->
+
+    <!-- Libs and Plugins CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/normalize/normalize.min.css') }}"> <!-- Normalize CSS (https://necolas.github.io/normalize.css/) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome/css/fontawesome-all.min.css') }}"> <!-- Font Icons CSS (https://fontawesome.com) Free version! -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/css/swiper-bundle.min.css') }}"> <!-- Swiper CSS (https://swiperjs.com/) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/lightgallery/css/lightgallery.min.css') }}"> <!-- lightGallery CSS (http://sachinchoolur.github.io/lightGallery) -->
+
+    <!-- Template master CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/helper.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/thebaton.css') }}">
+     
+</head>
+
+<body id="body" class="tb-transition tb-boxed tb-smooth-scroll tb-magic-cursor">
+
+
+    <!-- *************************************
+    *********** Begin body inner ************* 
+    ************************************** -->
+    <main id="body-inner">
+
+        <!-- Begin page transition (do not remove!!!) 
+        =========================== -->
+        <div id="page-transition">
+            <div class="ptr-overlay"></div>
+            <div class="ptr-preloader">
+                <div class="ptr-prel-content">
+                    <!-- Hint: You may need to change the img height and opacity to match your logo type. You can do this from the "thebaton.css" file (find: ".ptr-prel-image"). -->
+                    <img src="{{ url_for('static', filename='img/logo-dark.png') }}" class="ptr-prel-image tb-logo-dark" alt="TheBaton Logo">
+                </div> <!-- /.ptr-prel-content -->
+            </div> <!-- /.ptr-preloader -->
+        </div>
+        <!-- End page transition -->
+
+        <!-- Begin magic cursor 
+        ======================== -->
+        <div id="magic-cursor">
+            <div id="ball"></div>
+        </div>
+        <!-- End magic cursor -->
+
+        <!-- Begin noise background -->
+        <div class="bg-noise"></div>
+        <!-- End noise background --> 
+
+
+        <!-- *****************************************
+        *********** Begin scroll container *********** 
+        ****************************************** -->
+        <div id="scroll-container"> 
+            
+            <!-- ===================
+            ///// Begin header /////
+            ========================
+            * Use class "tb-header-fixed" to set header to fixed position.
+            -->
+            <header id="tb-header" class="tb-header-fixed">
+                <div class="tb-header-inner"> <!-- add/remove class "tb-wrap" to enable/disable element boxed layout (class "tb-boxed" is required in <body> tag!). Note: additionally you can use prepared helper class "max-width-*" to add custom width to "tb-wrap". Example: "max-width-1500" (class "tb-wrap" is still required!). More info about helper classes can be found in the file "helper.css". -->
+
+                    <div class="tb-header-col">
+
+                        <!-- Begin logo 
+                        ================ -->
+                        <div class="tb-logo"> 
+                            <a href="/">
+                                <!-- Hint: You may need to change the img height to match your logo type. You can do this from the "thebaton.css" file (find: ".tb-logo img"). -->
+                                <img src="{{ url_for('static', filename='img/logo-dark.png') }}" class="tb-logo-dark magnetic-item" alt="Logo"> <!-- logo dark -->
+                                <img src="{{ url_for('static', filename='img/logo-light.png') }}" class="tb-logo-light magnetic-item" alt="Logo"> <!-- logo light -->
+                            </a>
+                        </div>
+                        <!-- End logo -->
+
+                    </div> <!-- /.tb-header-col -->
+
+                    <div class="tb-header-col">
+
+                        <!-- Begin overlay menu toggle button -->
+                        <div id="tb-ol-menu-toggle-btn-wrap">
+                            <div class="tb-ol-menu-toggle-btn-text">
+                                <span class="text-menu" data-hover="Open">Menu</span>
+                                <span class="text-close">Close</span>
+                            </div>
+                            <div class="tb-ol-menu-toggle-btn-holder">
+                                <a href="#" class="tb-ol-menu-toggle-btn magnetic-item"><span></span></a>
+                            </div>
+                        </div>
+                        <!-- End overlay menu toggle button -->
+
+                        <!-- Begin main menu (classic)
+                        ===============================
+                        * Use class "tb-submenu-dark" to enable submenu dark style.
+                        * Use class "tb-m-menu-center" to align mobile menu to center (no effect on desktop!).
+                        -->
+                        <nav class="tb-main-menu tb-submenu-dark tb-m-menu-center">
+                            <div class="tb-main-menu-holder">
+                                <div class="tb-main-menu-inner">
+                                    <div class="tb-main-menu-content">
+
+                                        <!-- Begin main menu list -->
+                                        <ul class="tb-main-menu-list">
+
+                                            <!-- <li><a href="">Single Link</a></li> -->
+
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tb-submenu-wrap tb-submenu-master">
+                                                <div class="tb-submenu-trigger">
+                                                    <a href="#">Home</a>
+                                                </div> <!-- /.tb-submenu-trigger -->
+                                                <div class="tb-submenu">
+                                                    <ul class="tb-submenu-list">
+
+                                                        <li><a href="landing-page-1.html">Landing Page v.1</a></li>
+                                                        <li><a href="landing-page-2.html">Landing Page v.2</a></li>
+
+                                                    </ul> <!-- /.tb-submenu-list -->
+                                                </div> <!-- /.tb-submenu -->
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tb-submenu-wrap tb-submenu-master active">
+                                                <div class="tb-submenu-trigger">
+                                                    <a href="#">Portfolio</a>
+                                                </div> <!-- /.tb-submenu-trigger -->
+                                                <div class="tb-submenu">
+                                                    <ul class="tb-submenu-list">
+
+                                                        <!-- Begin submenu
+                                                        =================== -->
+                                                        <li class="tb-submenu-wrap">
+                                                            <div class="tb-submenu-trigger">
+                                                                <a href="#">Portfolio List</a>
+                                                            </div> <!-- /.tb-submenu-trigger -->
+                                                            <div class="tb-submenu">
+                                                                <ul class="tb-submenu-list">
+
+                                                                    <li><a href="portfolio-list-classic.html">List Classic</a></li>
+                                                                    <li><a href="portfolio-list-overlay.html">List Overlay</a></li>
+                                                                    <li><a href="portfolio-list-compact.html">List Compact</a></li>
+                                                                    
+                                                                </ul> <!-- /.tb-submenu-list -->
+                                                            </div> <!-- /.tb-submenu -->
+                                                        </li>
+                                                        <!-- End submenu -->
+
+                                                        <!-- Begin submenu
+                                                        =================== -->
+                                                        <li class="tb-submenu-wrap">
+                                                            <div class="tb-submenu-trigger">
+                                                                <a href="#">Portfolio Grid</a>
+                                                            </div> <!-- /.tb-submenu-trigger -->
+                                                            <div class="tb-submenu">
+                                                                <ul class="tb-submenu-list">
+
+                                                                    <li><a href="portfolio-grid-creative-1.html">Grid Creative v.1</a></li>
+                                                                    <li><a href="portfolio-grid-creative-2.html">Grid Creative v.2</a></li>
+                                                                    <li><a href="portfolio-grid-modern.html">Grid Modern</a></li>
+                                                                    <li><a href="portfolio-grid-classic.html">Grid Classic</a></li>
+                                                                    <li><a href="portfolio-grid-portrait-mode.html">Portrait Mode</a></li>
+                                                                    <li><a href="portfolio-one-column.html">One Column</a></li>
+                                                                    
+                                                                </ul> <!-- /.tb-submenu-list -->
+                                                            </div> <!-- /.tb-submenu -->
+                                                        </li>
+                                                        <!-- End submenu -->
+
+                                                        <!-- Begin submenu
+                                                        =================== -->
+                                                        <li class="tb-submenu-wrap">
+                                                            <div class="tb-submenu-trigger">
+                                                                <a href="#">Slider &amp; Carousel</a>
+                                                            </div> <!-- /.tb-submenu-trigger -->
+                                                            <div class="tb-submenu">
+                                                                <ul class="tb-submenu-list">
+
+                                                                    <li><a href="portfolio-fullscreen-slider.html">Fullscreen Slider</a></li>
+                                                                    <li><a href="portfolio-carousel-overlay.html">Carousel Overlay</a></li>
+                                                                    <li><a href="portfolio-carousel-center.html">Carousel Center</a></li>
+                                                                    
+                                                                </ul> <!-- /.tb-submenu-list -->
+                                                            </div> <!-- /.tb-submenu -->
+                                                        </li>
+                                                        <!-- End submenu -->
+
+                                                        <li><a href="portfolio-interactive.html">Interactive</a></li>
+                                                        <li><a href="portfolio-interactive-compact.html">Interactive Compact</a></li>
+                                                        <li class="active"><a href="elements-classic-menu.html">Classic Menu</a></li>
+
+                                                    </ul> <!-- /.tb-submenu-list -->
+                                                </div> <!-- /.tb-submenu -->
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tb-submenu-wrap tb-submenu-master">
+                                                <div class="tb-submenu-trigger">
+                                                    <a href="#">About</a>
+                                                </div> <!-- /.tb-submenu-trigger -->
+                                                <div class="tb-submenu">
+                                                    <ul class="tb-submenu-list">
+
+                                                        <li><a href="about-us.html">About Us</a></li>
+                                                        <li><a href="about-me.html">About Me</a></li>
+
+                                                    </ul> <!-- /.tb-submenu-list -->
+                                                </div> <!-- /.tb-submenu -->
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+
+                                            <!-- Begin submenu (submenu master)
+                                            ==================================== -->
+                                            <li class="tb-submenu-wrap tb-submenu-master">
+                                                <div class="tb-submenu-trigger">
+                                                    <a href="#">Blog</a>
+                                                </div> <!-- /.tb-submenu-trigger -->
+                                                <div class="tb-submenu">
+                                                    <ul class="tb-submenu-list">
+
+                                                        <!-- Begin submenu
+                                                        =================== -->
+                                                        <li class="tb-submenu-wrap">
+                                                            <div class="tb-submenu-trigger">
+                                                                <a href="#">Blog List</a>
+                                                            </div> <!-- /.tb-submenu-trigger -->
+                                                            <div class="tb-submenu">
+                                                                <ul class="tb-submenu-list">
+
+                                                                    <li><a href="blog-interactive.html">Interactive List</a></li>
+                                                                    <li><a href="blog-list.html">Compact List</a></li>
+                                                                    <li><a href="blog-classic.html">Classic List</a></li>
+                                                                    <li><a href="blog-classic-sidebar.html">Classic Sidebar</a></li>
+                                                                    
+                                                                </ul> <!-- /.tb-submenu-list -->
+                                                            </div> <!-- /.tb-submenu -->
+                                                        </li>
+                                                        <!-- End submenu -->
+
+                                                        <!-- Begin submenu
+                                                        =================== -->
+                                                        <li class="tb-submenu-wrap">
+                                                            <div class="tb-submenu-trigger">
+                                                                <a href="#">Blog Post</a>
+                                                            </div> <!-- /.tb-submenu-trigger -->
+                                                            <div class="tb-submenu">
+                                                                <ul class="tb-submenu-list">
+
+                                                                    <li><a href="blog-post.html">Single Post</a></li>
+                                                                    <li><a href="blog-post-classic-sidebar.html">Classic Sidebar</a></li>
+                                                                    
+                                                                </ul> <!-- /.tb-submenu-list -->
+                                                            </div> <!-- /.tb-submenu -->
+                                                        </li>
+                                                        <!-- End submenu -->
+
+                                                    </ul> <!-- /.tb-submenu-list -->
+                                                </div> <!-- /.tb-submenu -->
+                                            </li>
+                                            <!-- End submenu (sub-master) -->
+
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="https://1.envato.market/tank" target="_blank" rel="noopener">Buy Now!</a></li>
+
+                                        </ul>
+                                        <!-- End main menu list -->
+
+                                    </div> <!-- /.tb-main-menu-content -->
+                                </div> <!-- /.tb-main-menu-inner -->
+                            </div> <!-- /.tb-main-menu-holder -->
+
+                        </nav> 
+                        <!-- End main menu -->
+                        
+                    </div> <!-- /.tb-header-col -->
+                    </div> <!-- /.tb-header-inner -->
+                    </header>
+                    <!-- End header -->
+                    
+                    <!-- *************************************
+				*********** Begin content wrap *********** 
+				************************************** -->
+				<div id="content-wrap">
+					
+					<!-- ========================
+					///// Begin page header /////
+					============================= 
+					* Use class "ph-full" to enable fullscreen size.
+					* Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
+					* Use class "ph-center" to enable content center position.
+					* Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
+					* Use class "ph-bg-image-is-light" if needed, it makes the elements dark and more visible if you use a very light image (effect only with class "ph-bg-image").
+					* Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
+					* Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
+					* Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
+					* Use class "ph-content-parallax" to enable content parallax.
+					* Use class "ph-stroke" to enable caption title stroke style.
+					-->
+
+                    {% block content %}
+                    {% endblock %}
+
+                    <!-- ======================
+					///// Begin tb-footer /////
+					=========================== -->
+					<footer id="tb-footer">
+						<div class="tb-footer-inner">
+
+							<!-- Begin footer column 
+							========================= -->
+							<div class="footer-col tb-align-center-left">
+								<div class="footer-col-inner">
+
+									<!-- You can use whatever button or link here -->
+									<div class="tb-btn tb-btn-link">
+										<a href="#" class="scroll-to-top" data-hover="Back to top">Back to top</a>
+									</div>
+
+								</div> <!-- /.footer-col-inner -->
+							</div>
+							<!-- Begin footer column -->
+
+							<!-- Begin footer column 
+							========================= -->
+							<div class="footer-col tb-align-center order-m-last">
+								<div class="footer-col-inner">
+
+									<div class="tb-copyright">
+										© Copyright - <a href="https://thebaton.in" target="_blank" rel="noopener" class="tb-link">TheBaton.in</a>
+									</div>
+
+								</div> <!-- /.footer-col-inner -->
+							</div>
+							<!-- Begin footer column -->
+
+							<!-- Begin footer column 
+							========================= -->
+							<div class="footer-col tb-align-center-right">
+								<div class="footer-col-inner">
+
+									<div class="footer-social">
+										<div class="footer-social-text"><span>Follow</span><i class="fas fa-share-alt"></i></div>
+										<div class="social-buttons">
+											<ul>
+												<li><a href="https://www.facebook.com/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Fb.</a></li>
+												<li><a href="https://www.linkedin.com/company/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Ln.</a></li>
+												<li><a href="https://twitter.com/thebatonindia" class="magnetic-item" target="_blank" rel="noopener">Tw.</a></li>
+												<li><a href="https://www.instagram.com/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Ig.</a></li>
+											</ul>
+										</div> <!-- /.social-buttons -->
+									</div> <!-- /.footer-social -->
+
+								</div> <!-- /.footer-col-inner -->
+							</div>
+							<!-- Begin footer column -->
+
+						</div> <!-- /.tb-section-inner -->
+					</footer>
+					<!-- End tb-footer -->
+                    
+                </div>
+                <!-- End content-wrap -->
+
+            </div>
+            <!-- End scroll container -->
+
+        </main>
+        <!-- End main -->
+
+
+    <!-- <div class="hero-body">
+        <div class="has-text-centered">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            // block content 
+            // endblock 
+
+        </div>
+    </div> -->
+
+        <!-- ====================
+		///// Scripts below /////
+		===================== -->
+
+		<!-- Core JS -->
+		<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}""></script> <!-- jquery JS (https://jquery.com) -->
+
+		<!-- Libs and Plugins JS -->
+        <script src="{{ url_for('static', filename='vendor/gsap/gsap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/gsap/ScrollToPlugin.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/gsap/TweenMax.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/gsap/ScrollTrigger.min.js') }}"></script>
+                
+        <script src = "{{ url_for('static', filename='vendor/smooth-scrollbar.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/swiper/js/swiper-bundle.min.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/isotope/imagesloaded.pkgd.min.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/isotope/isotope.pkgd.min.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/isotope/packery-mode.pkgd.min.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/lightgallery/js/lightgallery-all.min.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/smooth-scrollbar.js') }}"></script>
+        <script src = "{{ url_for('static', filename='vendor/jquery.mousewheel.min.js') }}"></script>
+        
+		<!-- TheBaton master JS -->
+        <script src = "{{ url_for('static', filename='js/thebaton.js') }}"></script>
+
+	</body>
+
+</html>
