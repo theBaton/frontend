@@ -1,272 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--LINE 284 BOOTSTRAP ALERT HANDLE -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% if blogpost %}
-    <title>TheBaton - {{ blogpost.title }}</title>
-    <meta name="description" content="{{ blogpost.cta_title }}">
-    <meta name="keywords" content="{{ blogpost.keywords }}">
-    <meta name="author" content="{{ blogpost.author.name }}">
-    {% elif editorial %}
-    <title>TheBaton - {{ editorial.title }}</title>
-    <meta name="description" content="{{ editorial.cta_title }}">
-    <meta name="keywords" content="{{ editorial.keywords }}">
-    <meta name="author" content="{{ editorial.author.name }}">
+    <meta property="og:image" content="assets/img/thebaton_logo_twitter.png">
+    <meta name="twitter:image" content="assets/img/thebaton_logo_twitter.png">
+    {% if title %}
+    <meta name="twitter:title" content="TheBaton - {{ title }}">
+    {% elif page_name %}
+    <meta name="twitter:title" content="TheBaton - {{ page_name }}">
     {% else %}
-    <title>TheBaton</title>
-    <meta name="description" content="{{ page.description }}">
-    <meta name="keywords" content="{{ page.keywords }}">
+    <meta name="twitter:title" content="TheBaton">
     {% endif %}
+
+    {% if sub_title %}
+        <meta name="twitter:description" content="{{ sub_title }}">
+        <meta name="description" content="{{ sub_title }}">
+    {% elif page_name %}
+        <meta name="twitter:description" content="TheBaton - {{ page_name }}">
+        <meta name="description" content="TheBaton - {{ page_name }}">
+    {% else %}
+        <meta name="twitter:description" content="TheBaton">
+        <meta name="description" content="TheBaton">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='logo-fav/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo-fav/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='logo-fav/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ url_for('static', filename='logo-fav/site.webmanifest') }}">
 
-    <!-- Google Analytics - Global site tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJBT985WY3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-WJBT985WY3');
-    </script>
-
-    <!-- Google fonts (https://www.google.com/fonts) -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"> <!-- Body font -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet"> <!-- Secondary/Alter font -->
-
-    <!-- Libs and Plugins CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/normalize/normalize.min.css') }}"> <!-- Normalize CSS (https://necolas.github.io/normalize.css/) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome/css/fontawesome-all.min.css') }}"> <!-- Font Icons CSS (https://fontawesome.com) Free version! -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/css/swiper-bundle.min.css') }}"> <!-- Swiper CSS (https://swiperjs.com/) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/lightgallery/css/lightgallery.min.css') }}"> <!-- lightGallery CSS (http://sachinchoolur.github.io/lightGallery) -->
-
-    <!-- Template master CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/helper.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/thebaton.css') }}">
-    
-    <!-- DELETE THESE TAGS AFTER CONVERTING-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    
+    {% block title %}
+    {% endblock %}
+
 
 </head>
-
-<body id="body" class="tb-transition tb-boxed tb-smooth-scroll tb-magic-cursor">
-
-
-    <!-- *************************************
-    *********** Begin body inner ************* 
-    ************************************** -->
-    <main id="body-inner">
-
-        <!-- Begin page transition (do not remove!!!) 
-        =========================== -->
-        <div id="page-transition">
-            <div class="ptr-overlay"></div>
-            <div class="ptr-preloader">
-                <div class="ptr-prel-content">
-                    <!-- Hint: You may need to change the img height and opacity to match your logo type. You can do this from the "thebaton.css" file (find: ".ptr-prel-image"). -->
-                    <img src="assets/img/logo-dark.png" class="ptr-prel-image tb-logo-dark" alt="TheBaton Logo">
-                </div> <!-- /.ptr-prel-content -->
-            </div> <!-- /.ptr-preloader -->
-        </div>
-        <!-- End page transition -->
-
-        <!-- Begin magic cursor 
-        ======================== -->
-        <div id="magic-cursor">
-            <div id="ball"></div>
-        </div>
-        <!-- End magic cursor -->
-
-        <!-- Begin noise background -->
-        <div class="bg-noise"></div>
-        <!-- End noise background --> 
-
-
-        <!-- *****************************************
-        *********** Begin scroll container *********** 
-        ****************************************** -->
-        <div id="scroll-container"> 
-            
-            <!-- ===================
-            ///// Begin header /////
-            ========================
-            * Use class "tb-header-fixed" to set header to fixed position.
-            -->
-            <header id="tb-header" class="tb-header-fixed">
-                <div class="tb-header-inner"> <!-- add/remove class "tb-wrap" to enable/disable element boxed layout (class "tb-boxed" is required in <body> tag!). Note: additionally you can use prepared helper class "max-width-*" to add custom width to "tb-wrap". Example: "max-width-1500" (class "tb-wrap" is still required!). More info about helper classes can be found in the file "helper.css". -->
-
-                    <div class="tb-header-col">
-
-                        <!-- Begin logo 
-                        ================ -->
-                        <div class="tb-logo"> 
-                            <a href="index.html">
-                                <!-- Hint: You may need to change the img height to match your logo type. You can do this from the "thebaton.css" file (find: ".tb-logo img"). -->
-                                <img src="assets/img/logo-dark.png" class="tb-logo-dark magnetic-item" alt="Logo"> <!-- logo dark -->
-                                <img src="assets/img/logo-light.png" class="tb-logo-light magnetic-item" alt="Logo"> <!-- logo light -->
-                            </a>
-                        </div>
-                        <!-- End logo -->
-
-                    </div> <!-- /.tb-header-col -->
-
-                    <div class="tb-header-col">
-
-                        <!-- Begin overlay menu toggle button -->
-                        <div id="tb-ol-menu-toggle-btn-wrap">
-                            <div class="tb-ol-menu-toggle-btn-text">
-                                <span class="text-menu" data-hover="Open">Menu</span>
-                                <span class="text-close">Close</span>
-                            </div>
-                            <div class="tb-ol-menu-toggle-btn-holder">
-                                <a href="#" class="tb-ol-menu-toggle-btn magnetic-item"><span></span></a>
-                            </div>
-                        </div>
-                        <!-- End overlay menu toggle button -->
-
-                        <!-- Begin overlay menu 
-                        ======================== 
-                        * Use class "tb-ol-menu-center" to align menu to center.
-                        * Use class "tb-ol-menu-count" to enable menu counter.
-                        -->
-                        <nav class="tb-overlay-menu tb-ol-menu-center tb-ol-menu-count">
-                            <div class="tb-ol-menu-holder">
-                                <div class="tb-ol-menu-inner tb-wrap">
-                                    <div class="tb-ol-menu-content">
-
-                                        <!-- Begin menu list -->
-                                        <ul class="tb-ol-menu-list">
-
-                                            <li><a href="{{ url_for('user_api.index') }}">Home</a></li>
-                                            <li><a href="{{ url_for('user_api.about') }}">Out Team</a></li>
-                                            <li><a href="{{ url_for('user_api.blogposts') }}">Blogposts</a></li>
-                                            <li><a href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
-                                            <li><a href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
-                                            <li><a href="{{ url_for('user_api.contact') }}">Contact</a></li>
-                                            <!-- Begin submenu (submenu master)
-												==================================== -->
-												<li class="tb-ol-submenu-wrap active">
-													<div class="tb-ol-submenu-trigger">
-														<a href="#">Join Us/Register</a>
-														<div class="tb-ol-submenu-caret-wrap">
-															<div class="tb-ol-submenu-caret magnetic-item"></div>
-														</div> <!-- /.tb-ol-submenu-caret-wrap -->
-													</div> <!-- /.tb-ol-submenu-trigger -->
-													<div class="tb-ol-submenu">
-														<ul class="tb-ol-submenu-list">
-
-															<li class="active"><a href="{{ url_for('user_api.login') }}">Login</a></li>
-                                                            <li><a href="{{ url_for('user_api.register') }}">Register</a></li>
-                                                            
-														</ul> <!-- /.tb-ol-submenu-list -->
-													</div> <!-- /.tb-ol-submenu -->
-												</li>
-												<!-- End submenu (sub-master) -->
-                                        </ul>
-                                    </div> <!-- /.tb-ol-menu-content -->
-                                </div> <!-- /.tb-ol-menu-inner -->
-                            </div> <!-- /.tb-ol-menu-holder -->
-
-                            <!-- Begin noise background -->
-                            <div class="bg-noise"></div>
-                            <!-- End noise background -->
-                            
-                        </nav>
-                        <!-- End overlay menu -->
-
-                    </div> <!-- /.tb-header-col -->
-                    </div> <!-- /.tb-header-inner -->
-                    </header>
-                    <!-- End header -->
-                    
-                    <!-- *************************************
-				*********** Begin content wrap *********** 
-				************************************** -->
-				<div id="content-wrap">
-
-                    {% block content %}
-                    {% endblock %}
-
-                    <!-- ======================
-					///// Begin tb-footer /////
-					=========================== -->
-					<footer id="tb-footer">
-						<div class="tb-footer-inner">
-
-							<!-- Begin footer column 
-							========================= -->
-							<div class="footer-col tb-align-center-left">
-								<div class="footer-col-inner">
-
-									<!-- You can use whatever button or link here -->
-									<div class="tb-btn tb-btn-link">
-										<a href="#" class="scroll-to-top" data-hover="Back to top">Back to top</a>
-									</div>
-
-								</div> <!-- /.footer-col-inner -->
-							</div>
-							<!-- Begin footer column -->
-
-							<!-- Begin footer column 
-							========================= -->
-							<div class="footer-col tb-align-center order-m-last">
-								<div class="footer-col-inner">
-
-									<div class="tb-copyright">
-										© Copyright - <a href="https://thebaton.in" target="_blank" rel="noopener" class="tb-link">TheBaton.in</a>
-									</div>
-
-								</div> <!-- /.footer-col-inner -->
-							</div>
-							<!-- Begin footer column -->
-
-							<!-- Begin footer column 
-							========================= -->
-							<div class="footer-col tb-align-center-right">
-								<div class="footer-col-inner">
-
-									<div class="footer-social">
-										<div class="footer-social-text"><span>Follow</span><i class="fas fa-share-alt"></i></div>
-										<div class="social-buttons">
-											<ul>
-												<li><a href="https://www.facebook.com/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Fb.</a></li>
-												<li><a href="https://www.linkedin.com/company/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Ln.</a></li>
-												<li><a href="https://twitter.com/thebatonindia" class="magnetic-item" target="_blank" rel="noopener">Tw.</a></li>
-												<li><a href="https://www.instagram.com/thebatonofficial" class="magnetic-item" target="_blank" rel="noopener">Ig.</a></li>
-											</ul>
-										</div> <!-- /.social-buttons -->
-									</div> <!-- /.footer-social -->
-
-								</div> <!-- /.footer-col-inner -->
-							</div>
-							<!-- Begin footer column -->
-
-						</div> <!-- /.tb-section-inner -->
-					</footer>
-					<!-- End tb-footer -->
-                    
+<body>
+        <!-- Start: Navigation Clean -->
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container"><a class="navbar-brand" href="{{ url_for('user_api.index') }}"><img src="{{ url_for('static', filename='logo-fav/thebaton_logo_1000x160.png') }}" alt="TheBaton Logo"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.blogposts') }}">Blogposts</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('user_api.contact') }}" >Contact</a></li>
+                    </ul>
                 </div>
-                <!-- End content-wrap -->
-
             </div>
-            <!-- End scroll container -->
+        </nav><!-- End: Navigation Clean -->
 
-        </main>
-        <!-- End main -->
-
-
-    <!-- <div class="hero-body">
+        <script>
+            var scroll = new SmoothScroll('a[href*="#"]');
+        </script>
+    <div class="hero-body">
         <div class="has-text-centered">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -282,33 +79,56 @@
             {% endblock %}
 
         </div>
-    </div> -->
+    </div>
 
-        <!-- ====================
-		///// Scripts below /////
-		===================== -->
+    <!-- Start: Footer Dark -->
+    <footer class="footer-dark">
+        <div class="container">
+            <div class="row">
+                <!-- Start: Services -->
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Pages</h3>
+                    <ul>
+                        <li><a href="{{ url_for('user_api.index') }}">Home</a></li>
+                        <li><a href="{{ url_for('user_api.blogposts') }}">Blogposts</a></li>
+                        <li><a href="{{ url_for('user_api.editorials') }}">Editorials</a></li>
+                        <li><a href="{{ url_for('user_api.podcasts') }}">Podcasts</a></li>
+                        <li><a href="{{ url_for('user_api.contact') }}">Contact</a></li>
+                    </ul>
+                </div><!-- End: Services -->
+                <!-- Start: About -->
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>User Management</h3>
+                    <ul>
+                        <li><a href="{{ url_for('user_api.register') }}">Register</a></li>
+                        <li><a href="{{ url_for('user_api.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('user_api.logout') }}">Logout</a></li>
+                    </ul>
+                </div><!-- End: About -->
+                <!-- Start: Footer Text -->
+                <div class="col-md-6 item text">
+                    <h3>TheBaton</h3>
+                    <p>TheBaton provides an open-ended, peer-reviewed forum for scholarly discussions of legal and socio-political issues of importance. We seek to promote conscientious and honest dialogue on issues affecting the global population through publishing pieces written by students and practitioners.</p>
+                </div><!-- End: Footer Text -->
+                <!-- Start: Social Icons -->
+                <div class="col item social">
+                    <a href="https://www.facebook.com/thebatonofficial" target="_blank"><i class="icon ion-social-facebook"></i></a>
+                    <a href="https://www.linkedin.com/company/thebatonofficial" target="_blank"><i class="icon ion-social-linkedin"></i></a>
+                    <a href="https://twitter.com/thebatonindia" target="_blank"><i class="icon ion-social-twitter"></i></a>
+                    <a href="https://www.instagram.com/thebatonofficial" target="_blank"><i class="icon ion-social-instagram"></i></a>
+                </div><!-- End: Social Icons -->
+            </div><!-- Start: Copyright -->
+            <p class="copyright">TheBaton © 2021</p><!-- End: Copyright -->
+        </div>
+    </footer><!-- End: Footer Dark -->
 
-		<!-- Core JS -->
-		<script src="assets/vendor/jquery/jquery.min.js"></script> <!-- jquery JS (https://jquery.com) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/vanilla-tilt.js') }}"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
 
-		<!-- Libs and Plugins JS -->
-        <script src="{{ url_for('static', filename='vendor/gsap/gsap.min.css') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/gsap/ScrollToPlugin.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/gsap/TweenMax.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/gsap/ScrollTrigger.min.js') }}"></script>
-                
-        <script src = "{{ url_for('static', filename='vendor/smooth-scrollbar.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/swiper/js/swiper-bundle.min.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/isotope/imagesloaded.pkgd.min.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/isotope/isotope.pkgd.min.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/isotope/packery-mode.pkgd.min.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/lightgallery/js/lightgallery-all.min.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/smooth-scrollbar.js') }}"></script>
-        <script src = "{{ url_for('static', filename='vendor/jquery.mousewheel.min.js') }}"></script>
-        
-		<!-- TheBaton master JS -->
-        <script src = "{{ url_for('static', filename='js/thebaton.js') }}"></script>
+    
 
-	</body>
-
+</body>
 </html>

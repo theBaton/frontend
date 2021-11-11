@@ -1,403 +1,106 @@
-{% extends "base_nav_classic.html" %}
+{% extends "base.html" %}
+
+
+{% block title %}
+<title>TheBaton - Home</title>
+<link rel="stylesheet" href="static/css/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+
+{% endblock %}
+
 
 {% block content %}
+<div class="carousel slide" data-ride="carousel" id="carousel-1">
+  <div class="carousel-inner">
+    
+        <div class="carousel-item active"><a href="/editorials/{{ featured_editorials[0].public_id }}">
+            <img class="w-100 d-block" src="{{ featured_editorials[0].cover_image }}" alt="Slide Image">
+                <div class="overlay-text-container">
+                    <h1>{{ featured_editorials[0].title }}</h1>
+                    <em>
+                        <h2>{{ featured_editorials[0].sub_title }}</h2>
+                    </em>
+                </div>
+        </a>
+        </div>
+    
 
-<!-- ========================
-///// Begin page header /////
-============================= 
-* Use class "ph-full" to enable fullscreen size.
-* Use class "ph-cap-sm", "ph-cap-lg", "ph-cap-xlg" or "ph-cap-xxlg" to set caption size (no class = default size).
-* Use class "ph-center" to enable content center position.
-* Use class "ph-bg-image" to enable page header background image (required for a portfolio single project!).
-* Use class "ph-bg-image-is-dark" if needed, it makes the elements light and more visible if you use a very dark image (effect only with class "ph-bg-image").
-* Use class "ph-image-shadow" to enable page header background image (effect only with class "ph-bg-image").
-* Use class "ph-image-cropped" to crop image. It fixes image dimensions (no effect for "ph-bg-image"!).
-* Use class "ph-image-cover-*" to set image overlay opacity. For example "ph-image-cover-2" or "ph-image-cover-2-5" (up to "ph-image-cover-9-5").
-* Use class "ph-content-parallax" to enable content parallax.
-* Use class "ph-stroke" to enable caption title stroke style.
--->
-<div id="page-header" class="ph-full ph-cap-sm ph-image-cropped ph-image-cover-2 ph-content-parallax">
-	<div class="page-header-inner tb-wrap">
-
-		<!-- Begin page header image 
-		============================= -->
-		<div class="ph-image">
-			<div class="ph-image-inner">
-				<img src="" alt="Image">
-			</div>
-		</div>
-		<!-- End page header image -->
-
-		<!-- Begin page header caption
-		=============================== 
-		Use class "max-width-*" to set caption max width if needed. For example "max-width-1000". More info about helper classes can be found in the file "helper.css".
-		-->
-		<div class="ph-caption max-width-1000">
-			<h1 class="ph-caption-title ph-appear font-normal"><em>Hello!</em><br> We provide an open-ended forum for <u><em>scholarly discussions</em></u> of legal and socio-political issues of importance.</h1>
-			<div class="ph-caption-title-ghost ph-appear">Hello!</div>
-			<!-- <div class="ph-caption-subtitle ph-appear">Subtitle</div> -->
-		</div> 
-		<!-- End page header caption -->
-
-	</div> <!-- /.page-header-inner -->
-
-	<!-- Begin scroll down circle (you can change "data-offset" to set scroll top offset) 
-	============================== -->
-	<a href="#page-content" class="scroll-down-circle" data-offset="30">
-		<div class="sdc-inner ph-appear">
-			<div class="sdc-icon"><i class="fas fa-chevron-down"></i></div>
-			<svg viewBox="0 0 500 500">
-				<defs>
-					<path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
-				</defs>
-				<text dy="30">
-					<textPath xlink:href="#textcircle">Scroll down - Scroll down -</textPath>
-				</text>
-			</svg>
-		</div> <!-- /.sdc-inner -->
-	</a>
-	<!-- End scroll down circle -->
-
-	<!-- Begin made with love 
-	========================== -->
-	<div class="made-with-love ph-appear">
-		<div class="mwl-inner">
-			<div class="mwl-text">Made with</div>
-			<div class="mwl-icon"><i class="far fa-heart"></i></div>
-		</div>
-	</div>
-	<!-- End made with love -->
-	
+    {% for i in range(1, featured_editorials.count()) %}
+      
+          <div class="carousel-item"><a href="/editorials/{{ featured_editorials[i].public_id }}">
+              <img class="w-100 d-block" src="{{ featured_editorials[i].cover_image }}" alt="Slide Image">
+                  <div class="overlay-text-container">
+                      <h1>{{ featured_editorials[i].title }}</h1>
+                      <em>
+                          <h2>{{ featured_editorials[i].sub_title }}</h2>
+                      </em>
+                  </div>
+          </a>
+          </div>
+      
+      {% endfor %}
+      </div>
+  <div>
+      <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span></a><!-- End: Previous -->
+      <!-- Start: Next --><a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next"><span class="carousel-control-next-icon"></span><span class="sr-only">Next</span></a><!-- End: Next -->
+  </div>
+  <ol class="carousel-indicators">
+      <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+      {% for i in range(1, featured_editorials.count()) %}
+      <li data-target="#carousel-1" data-slide-to="{{ i }}"></li>
+      {% endfor %}
+  </ol>
 </div>
-<!-- End page header -->
+<header class="recart">
+    <section class="recart-text">
+        <h1>RECENT BLOGPOSTS</h1>
+    </section>
+    <section class="recart-grid">
+        {% for blog in recent_blogs %}
+        <article class="recart-element" data-tilt data-tilt-max=5>
+            <a href="/blogposts/{{ blog.public_id }}">
+            <img src="{{ blog.cover_image }}" alt="blog thumbnail">
+            <div class="container">
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.cta_title }}</p>
+            </div>
+            </a>
+        </article>
+        {% endfor %}
+    </section>
+    <section class="recart-btn">
+        <button><a href="/blogposts"> READ MORE</a></button>
+    </section>
+</header>
+<header class="subscribe">
+  <section class="subscribe-flex">
+      <acticle class="text news-flex">    
+              <div class="subs-text-wrap wrapper-1">
+                  <h1>
+                      Want to stay updated?
+                  </h1>
+              </div>
+          <div class="subs-text-wrap wrapper-2">
+              <h2>
+                  Subscribe to our Newsletter
+              </h2>
+              <p>
+                  You wont miss any story!
+              </p>
+          </div>
+          <div class="subs-text-wrap wrapper-3">
+              <form class="subscribe-form" action="">
+                  <input class="subscribe-form-input" type="email" placeholder="your email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                  <button class="subscribe-form-btn" type="submit">Subscribe</button>
+              </form>
+          </div>
+      </acticle>
+      <article class="news-flex">
+          <div class="img"><img src="https://picsum.photos/399/225" alt="subscribe image"></div>
+      </article>
+  </section>
+</header>
 
 
-<!-- *************************************
-*********** Begin page content *********** 
-************************************** -->
-<div id="page-content">
-
-	<!-- =======================
-	///// Begin tb-section /////
-	============================ 
-	* You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
-	-->
-	<div class="tb-section no-padding-bottom">
-		<div class="tb-section-inner">
-
-			<!-- Begin tb-Heading 
-			====================== 
-			* Use class "tb-heading-xsm", "tb-heading-sm", "tb-heading-lg", "tb-heading-xlg" or "tb-heading-xxlg" to set caption size (no class = default size).
-			* Use class "tb-heading-stroke" to enable stroke style.
-			* Use class "tb-heading-center" to align tb-Heading to center.
-			* Use prepared helper class "max-width-*" to add custom width if needed. Example: "max-width-800". More info about helper classes can be found in the file "helper.css".
-			-->
-			<div class="tb-heading tb-heading-lg tb-heading-center margin-bottom-10-p anim-fadeinup">
-				<h3 class="tb-heading-subtitle text-gray">Featured</h3>
-				<h2 class="tb-heading-title">Editorials</h2>
-				<div class="tb-btn tb-btn-link margin-top-20">
-					<a href="{{ url_for('user_api.editorials') }}" data-hover="See All Editorials">See All Editorials</a>
-				</div>
-			</div>
-			<!-- End tb-Heading -->
-
-
-			<!-- Begin portfolio list 
-			========================== 
-			* Use class "pl-alter" to enable alternative layout.
-			* Use class "pl-compact" to enable compact layout (no effect with class "pli-info-overlay"!).
-			* Use class "pli-cropped" to crop images (it sets the images to a fixed height).
-			* Use class "pli-hover" to enable item hover effect.
-			* Use class "pli-info-overlay" to enable item info overlay.
-			* Use class "pli-title-stroke" to enable item title stroke effect.
-			* Use class "pli-info-sm", "pli-info-lg", "pli-info-xlg" or "pli-info-xxlg" to set item info size (no class = default size!)
-			-->
-			<div class="portfolio-list pli-info-lg pl-alter pli-cropped pli-hover">
-				{% for editorial in editorials %}
-				<!-- Begin portfolio list item 
-				===============================
-				* Use class "pli-image-is-light" if needed, it makes the caption visible better if you use light image (only effect if "pli-info-overlay" is enabled!). 
-				-->
-				<div class="portfolio-list-item">
-					<div class="pli-inner">
-
-						<div class="pli-image-col">
-							<a href="/editorial/{{ editorial.public_id }}" class="pli-image-link" data-cursor="View<br>Project">
-								<div class="pli-image-holder">
-									<!-- Use class "cover-opacity-*" to set image overlay if needed. For example "cover-opacity-2". Useful if class "pli-info-overlay" is enabled on "portfolio-list". Note: It is individual and depends on the image you use. More info about helper classes in file "helper.css". -->
-									<figure class="pli-image">
-										<img class="anim-image-parallax tb-lazy" src="" data-src="" alt="">
-									</figure> <!-- /.pli-image -->
-								</div> <!-- /.pli-image-holder -->
-
-								<div class="pli-info-col pli-info-inner">
-									<div class="pli-info">
-										<h2 class="pli-title">{{ editorial.title }}</h2> <!-- You can use <br class="hide-from-sm"> to break a text line if needed -->
-										<div class="pli-categories-wrap">
-											<div class="pli-category">Editorial</div>
-										</div> <!-- /.pli-categories-wrap -->
-									</div> <!-- /.pli-info -->
-								</div> <!-- /.pli-info-col -->
-
-							</a> <!-- /.pli-image-link -->
-						</div> <!-- /.pli-image-col -->
-
-						<div class="pli-info-col pli-info-outer">
-							<div class="pli-info">
-								<div class="pli-counter"></div>
-								<h2 class="pli-title"><a href="/editorial/{{ editorial.public_id }}">{{ editorial.title }}</a></h2> <!-- You can use <br class="hide-from-sm"> to break a text line if needed -->
-								<div class="pli-categories-wrap">
-									<div class="pli-category">{{ editorial.cta_title }}</div>
-								</div> <!-- /.pli-categories-wrap -->
-							</div> <!-- /.pli-info -->
-						</div> <!-- /.pli-info-col -->
-
-					</div> <!-- /.pli-inner -->
-				</div> 
-				<!-- End portfolio list item -->
-				{% endfor %}
-
-			</div>
-			<!-- End portfolio list -->
-
-		</div> <!-- /.tb-section-inner -->
-	</div>
-	<!-- End tb-section -->
-
-
-	<!-- =======================
-	///// Begin tb-section /////
-	============================ 
-	* You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
-	-->
-	<div class="tb-section no-padding-bottom">
-		<div class="tb-section-inner">
-
-			<!-- Begin tb-Heading 
-			====================== 
-			* Use class "tb-heading-xsm", "tb-heading-sm", "tb-heading-lg", "tb-heading-xlg" or "tb-heading-xxlg" to set caption size (no class = default size).
-			* Use class "tb-heading-stroke" to enable stroke style.
-			* Use class "tb-heading-center" to align tb-Heading to center.
-			* Use prepared helper class "max-width-*" to add custom width if needed. Example: "max-width-800". More info about helper classes can be found in the file "helper.css".
-			-->
-			<div class="tb-heading tb-heading-lg tb-heading-center margin-bottom-10-p anim-fadeinup">
-				<h3 class="tb-heading-subtitle text-gray">Latest</h3>
-				<h2 class="tb-heading-title">Blogposts</h2>
-				<div class="tb-btn tb-btn-link margin-top-20">
-					<a href="{{ url_for('user_api.blogposts') }}" data-hover="See All Blogs">See All Blogs</a>
-				</div>
-			</div>
-			<!-- End tb-Heading -->
-
-
-			<!-- Begin portfolio grid (works combined with tb-Ggrid!)
-			========================== 
-			* Use class "pgi-hover" to enable portfolio grid item hover effect (behavior depends on "ttgr-gap-*" classes below!).
-			* Use class "pgi-cap-hover" to enable portfolio grid item caption hover effect (effect only with class "pgi-cap-inside"! Also no effect on mobile devices!).
-			* Use class "pgi-cap-center" to position portfolio grid item caption to center.
-			* Use class "pgi-cap-inside" to position portfolio grid item caption to inside.
-			--> 
-			<div id="portfolio-grid" class="pgi-cap-inside pgi-hover">
-
-				<!-- Begin tb-Grid
-				=================== 
-				* Use class "ttgr-layout-2", "ttgr-layout-3", "ttgr-layout-4" to set grid layout (columns). No class = one column.
-				* Use class "ttgr-layout-1-2", "ttgr-layout-2-1", "ttgr-layout-2-3", "ttgr-layout-3-2", "ttgr-layout-3-4" or "ttgr-layout-4-3" to set grid mixed layout (columns).
-				* Use class "ttgr-layout-creative-1" or "ttgr-layout-creative-2" to set grid creative mixed layout (no effect with classes "ttgr-portrait", "ttgr-portrait-half", "ttgr-not-cropped" and "ttgr-shifted").
-				* Use class "ttgr-portrait" or "ttgr-portrait-half" to enable portrait mode (no effect with classes "ttgr-layout-creative-1", "ttgr-layout-creative-2" and "ttgr-not-cropped").
-				* Use class "ttgr-gap-1", "ttgr-gap-2", "ttgr-gap-3", "ttgr-gap-4", "ttgr-gap-5" or "ttgr-gap-6" to add space between items.
-				* Use class "ttgr-not-cropped" to enable not cropped mode (effect only with classes "ttgr-layout-2", "ttgr-layout-3" and "ttgr-layout-4").
-				* Use class "ttgr-shifted" to enable shifted layout (effect only with classes "ttgr-layout-2", "ttgr-layout-3" and "ttgr-layout-4").
-				-->
-				<div class="tb-grid ttgr-layout-creative-2 ttgr-not-cropped ttgr-gap-4">
-
-					<!-- Begin tb-Grid items wrap 
-					============================== -->
-					<div class="tb-grid-items-wrap isotope-items-wrap">
-
-						<!-- Begin tb-Grid item
-						======================== -->
-						<div class="tb-grid-item isotope-item people">
-							<div class="ttgr-item-inner">
-
-								{% for blogpost in blogposts %}
-								<!-- Begin portfolio grid item 
-								===============================
-								* Use class "pgi-image-is-light" if needed, it makes the caption visible better if you use light image (only effect if "pgi-cap-inside" is enabled on "portfolio-grid"! Also no effect on small screens!).
-								-->
-								<div class="portfolio-grid-item">
-									<a href="/blogpost/{{ blogpost.public_id}}" class="pgi-image-wrap" data-cursor="Read<br>Blog">
-										<!-- Use class "cover-opacity-*" to set image overlay if needed. For example "cover-opacity-2". Useful if class "pgi-cap-inside" is enabled on "portfolio-grid". Note: It is individual and depends on the image you use. More info about helper classes in file "helper.css". -->
-										<div class="pgi-image-holder cover-opacity-2">
-											<div class="pgi-image-inner anim-zoomin">
-												<figure class="pgi-image ttgr-height">
-													<img src="" alt="">
-												</figure> <!-- /.pgi-image -->
-											</div> <!-- /.pgi-image-inner -->
-										</div> <!-- /.pgi-image-holder -->
-									</a> <!-- /.pgi-image-wrap -->
-
-									<div class="pgi-caption">
-										<div class="pgi-caption-inner">
-											<h2 class="pgi-title">{{ blogpost.title }}</h2>
-											<div class="pgi-categories-wrap">
-												<div class="pgi-category">{{ blogpost.cta_title }}</div>
-											</div> <!-- /.pli-categories-wrap -->
-										</div> <!-- /.pgi-caption-inner -->
-									</div> <!-- /.pgi-caption -->
-								</div>
-								<!-- End portfolio grid item -->
-								{% endfor %}
-
-							</div> <!-- /.ttgr-item-inner -->
-						</div>
-						<!-- End tb-Grid item -->
-
-					</div>
-					<!-- End tb-Grid items wrap  -->
-
-				</div>
-				<!-- End tb-Grid -->
-
-			</div>
-			<!-- End portfolio grid -->
-
-		</div> <!-- /.tb-section-inner -->
-	</div>
-	<!-- End tb-section -->
-
-
-	<!-- =======================
-	///// Begin tb-section /////
-	============================ 
-	* You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
-	-->
-	<div class="tb-section padding-top-xlg-150 padding-bottom-xlg-150">
-		<div class="tb-section-inner">
-
-			<!-- Begin scrolling text
-			========================== 
-			Change data-scroll-speed="*" to adjust scrolling speed.
-			Use class "scr-text-reverse" to reverse scrolling direction. 
-			Use class "scr-text-stroke" to enable text stroke style (no effect on smaller screens!). 
-			-->
-			<div class="tb-scrolling-text scr-text-stroke font-italic" data-scroll-speed="15">
-				<div class="tb-scrolling-text-inner text-dark-3" data-text="Social Advocacy & Legal Clinic! -">
-					Social Advocacy & Legal Clinic! -
-				</div> <!-- /.tb-scrolling-text-inner -->
-			</div>
-			<!-- End scrolling text -->
-
-			<!-- Begin scrolling text
-			========================== 
-			Change data-scroll-speed="*" to adjust scrolling speed.
-			Use class "scr-text-reverse" to reverse scrolling direction. 
-			Use class "scr-text-stroke" to enable text stroke style (no effect on smaller screens!). 
-			-->
-			<div class="tb-scrolling-text scr-text-stroke scr-text-reverse font-italic" data-scroll-speed="15">
-				<div class="tb-scrolling-text-inner text-dark-3" data-text="Social Advocacy & Legal Clinic! -">
-					Social Advocacy & Legal Clinic! -
-				</div> <!-- /.tb-scrolling-text-inner -->
-			</div>
-			<!-- End scrolling text -->
-
-		</div> <!-- /.tb-section-inner -->
-	</div>
-	<!-- End tb-section -->
-
-
-	<!-- =======================
-	///// Begin tb-section /////
-	============================ 
-	* You can use padding classes if needed. For example "padding-top-xlg-150", "padding-bottom-xlg-150", "no-padding-top", "no-padding-bottom", etc. Note that each situation may be different and each section may need different classes according to your needs. More info about helper classes can be found in the file "helper.css".
-	-->
-	<div class="tb-section padding-top-xlg-150 padding-bottom-xlg-150 padding-left-sm-3-p padding-right-sm-3-p bg-white-accent-3">
-		<div class="tb-section-inner tb-wrap max-width-900">
-
-			<!-- Begin tb-Heading 
-			====================== 
-			* Use class "tb-heading-xsm", "tb-heading-sm", "tb-heading-lg", "tb-heading-xlg" or "tb-heading-xxlg" to set caption size (no class = default size).
-			* Use class "tb-heading-stroke" to enable stroke style.
-			* Use class "tb-heading-center" to align tb-Heading to center.
-			* Use prepared helper class "max-width-*" to add custom width if needed. Example: "max-width-800". More info about helper classes can be found in the file "helper.css".
-			-->
-			<div class="tb-heading tb-heading-lg margin-bottom-10-p anim-fadeinup">
-				<h3 class="tb-heading-subtitle text-gray">Get in Touch</h3>
-				<h2 class="tb-heading-title">Drop Us<br> a Line</h2>
-			</div>
-			<!-- End tb-Heading -->
-
-			<!-- Begin form 
-			================ 
-			* Use class "tb-form-filled" or "tb-form-minimal" to change form style.
-			* Use class "tb-form-sm" or "tb-form-lg" to change form size (no class = default size).
-			* Use class "tb-hide-labels" to to hide labels.
-			-->
-			<form id="tb-contact-form" class="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup">
-
-				<!-- Begin hidden required fields (https://github.com/agragregra/uniMail) -->
-				<input type="hidden" name="project_name" value="yourwebsiteaddress.com"> <!-- Change value to your site name -->
-				<input type="hidden" name="admin_email" value="your@email.com"> <!-- Change value to your valid email address (where a message will be sent) -->
-				<input type="hidden" name="form_subject" value="Message from yourwebsiteaddress.com"> <!-- Change value to your own message subject -->
-				<!-- End Hidden Required Fields -->
-
-				<div class="tb-row">
-					<div class="tb-col-md-6">
-
-						<div class="tb-form-group">
-							<label>Name</label>
-							<input class="tb-form-control" type="text" name="Name" placeholder="Enter your name" required>
-						</div>
-
-					</div> <!-- /.tb-col -->
-
-					<div class="tb-col-md-6">
-
-						<div class="tb-form-group">
-							<label>Email address</label>
-							<input class="tb-form-control" type="email" name="Email" placeholder="Enter your email" required>
-						</div>
-
-					</div> <!-- /.tb-col -->
-				</div> <!-- /.tb-row -->
-
-				<div class="tb-form-group">
-					<label>Subject</label>
-					<input class="tb-form-control" type="text" name="Subject" placeholder="Subject" required>
-				</div>
-
-				<!-- <div class="tb-form-group">
-					<label>Select an option</label>
-					<select class="tb-form-control" name="Option" required>
-						<option value="" disabled selected>Please choose an option</option>
-						<option value="Say Hello">Say hello</option>
-						<option value="New Project">New project</option>
-						<option value="Feedback">Feedback</option>
-						<option value="Other">Other</option>
-					</select>
-				</div> -->
-
-				<div class="tb-form-group">
-					<label>Message</label>
-					<textarea class="tb-form-control" rows="7" name="Message" placeholder="What's in your mind?" required></textarea>
-					<small class="tb-form-text"><em>* All fields are required!</em></small>
-				</div>
-
-				<div class="tb-btn tb-btn-dark-outline">
-					<button type="submit" data-hover="Send Message">Send Message</button>
-				</div>
-			</form>
-			<!-- End form -->
-
-		</div> <!-- /.tb-section-inner -->
-	</div>
-	<!-- End tb-section -->
-
-
-</div>
-<!-- End page content -->
-
-
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 {% endblock %}

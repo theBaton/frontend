@@ -1,224 +1,222 @@
-from flask import app, render_template, request, redirect, url_for, flash, Blueprint, make_response, jsonify
+from flask import jsonify, request, make_response, Blueprint, flash, redirect, render_template, url_for, render_template_string
+from flask_jwt_extended.utils import decode_token
+from ..models.UserModel import User
+from ..models.BlogpostModel import Blogpost
+from ..models.EditorialModel import Editorial
+from ..models import db
+from sqlalchemy import desc
 import os
+import uuid
 
-from requests.sessions import session
-from .forms import LoginForm, RegisterForm, ContactForm
 from datetime import datetime, timedelta, timezone
-import requests
+from urllib.parse import urlencode
+from .forms import RegistrationForm, LoginForm, ProfileEditForm
+from . import jwt
+from flask_jwt_extended import create_access_token, jwt_required, set_access_cookies, unset_jwt_cookies, get_jwt, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
+from .danger import superadmin_required, staff_required, generate_jwt_access_token
 
-#import blueprint
-user_api = Blueprint('user_api', __name__, template_folder='templates')
+user_api = Blueprint('user_api', __name__)
 
-#getheaders function
-def getheaders():
-    r = requests.get('https://admin.thebaton.in/')
+@user_api.after_request
+def refresh_expiring_jwts(response):
     try:
-        cookie = r.cookies['access-token']
-    except KeyError:
-        cookie = None
-    if cookie:
-        headers = {
-            'Authorization': 'Bearer ' + cookie,
-            'Content-Type': 'application/json'
-        }
-    else:
-        headers = {
-            'Content-Type': 'application/json'
-        }
-    return headers
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            set_access_cookies(response, access_token)
+        return response
+    except (RuntimeError, KeyError):
+        return response
 
 @user_api.context_processor
 def handle_context():
     return dict(req_args = request.args, int = int, len = len, datetime=datetime, str = str)
 
-@user_api.route('/', methods=['GET', 'POST'])
-@user_api.route('/index', methods=['GET', 'POST'])
-def index(headers=getheaders()):
+@user_api.route("/")
+@user_api.route("/index")
+def index():
+    featured_editorials = Editorial.query.order_by(desc('date_modified')).limit(4)
+    recent_blogs = Blogpost.query.order_by(desc('date_modified')).limit(6)
+    return render_template('index.html', recent_blogs = recent_blogs, featured_editorials = featured_editorials)
 
-    #get editorials from api
-    editorials = requests.get('https://admin.thebaton.in/editorials?_sort=id:DESC&_limit=6', headers=headers)
 
-    #get blogposts from api
-    blogposts = requests.get('https://admin.thebaton.in/blogposts?_sort=id:DESC&_limit=6', headers=headers)
+@user_api.route("/about")
+def about():
+    return render_template('about.html', title='About')
 
-    #contact form
-    form = ContactForm()
+
+@user_api.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
     if form.validate_on_submit():
-        flash('Your message has been sent to TheBaton Team. We will reach back to you shortly')
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+
+        user = User(
+            public_id = str(uuid.uuid4()),
+            name = form.name.data,
+            email = form.email.data, 
+            password = hashed_password,
+            role='user+staff+superadmin'
+            )
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f'Your account has been created!', 'success')
         return redirect(url_for('user_api.index'))
+    return render_template('register.html', form=form)
 
-    return render_template('index.html', title='Home - TheBaton', form=form, editorials=editorials, blogposts=blogposts)
 
-@user_api.route('/login', methods=['GET', 'POST'])
+@user_api.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        
-        #set cookie remember_me
-        if form.remember_me.data:
-            remember_me = datetime.now() + timedelta(days=30)
-        else:
-            remember_me = datetime.now() + timedelta(days=1)
-        
-        #get access_token from api
-        request = requests.post('https://admin.thebaton.in/auth/local', json={
-            'identifier': form.email.data,
-            'password': form.password.data
-        })
-        access_token = request.json()['jwt']
 
-        #set cookie with access_token
-        response = make_response(redirect(url_for('user_api.index')))
-        response.set_cookie('access_token', access_token, expires=remember_me)
-        
-        return response
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            if check_password_hash(user.password, form.password.data):
+
+                response = make_response(redirect(url_for('user_api.index')))
+                access_token = generate_jwt_access_token(user)
+                set_access_cookies(response, access_token)
+                flash('You have been logged in!', 'success')
+                
+                return response
+
+            flash('Login Unsuccessful. Please check your password', 'danger')
+
+        flash('User does not exist. Please register.', 'danger')
+
+    return render_template('login.html', form=form)
 
 
-    return render_template('login.html', title='Sign In - TheBaton', form=form)
-
-@user_api.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        return redirect(url_for('user_api.index'))
-
-    return render_template('register.html', title='Register - TheBaton', form=form)
-
-@user_api.route('/logout')
+@user_api.route("/logout", methods=['GET', 'POST'])
 def logout():
     response = make_response(redirect(url_for('user_api.index')))
-    response.set_cookie('access_token', '', expires=0)
+    unset_jwt_cookies(response)
+    flash('You have been logged out!', 'success')
     return response
 
-@user_api.route('/editorials', methods=['GET'])
-def editorials():
-    page = request.args.get('page', 1, type=int)
-    editorials = requests.get('https://admin.thebaton.in/editorials')
-    editorials = editorials.reverse()
-    pagination = editorials.paginate(page, per_page=6, error_out=False)
-    editorials = pagination.items
-    return render_template('editorials.html', title='Editorials - TheBaton', editorials=editorials, pagination=pagination)
+@user_api.route("/forgot-password", methods=['GET', 'POST'])
+def forgot_password():
 
-@user_api.route('/editorials/<string:public_id>', methods=['GET'])
-def editorial(public_id, headers=getheaders()):
-    editorial = requests.get('https://admin.thebaton.in/editorials/' + public_id, headers=headers)
-    #get comments from api
-    comments = requests.get('https://admin.thebaton.in/editorials/' + public_id + '/comments', headers=headers)
-    comments = comments.reverse()
-    #get next editorial
-    next_editorial = requests.get('https://admin.thebaton.in/editorials/' + public_id + '/next', headers=headers)
-    return render_template('editorial.html', title=f'{editorial.title} - Editorial - TheBaton', editorial=editorial, comments=comments, next_editorial=next_editorial)
+    return redirect(url_for('user_api.index'))
 
-@user_api.route('/editorials/<string:public_id>', methods=['POST', 'DELETE', 'PUT'])
-def editorial_functions(public_id, headers=getheaders()):
-    if request.form['action'] == 'like':
-        r= requests.post('https://admin.thebaton.in/editorials/' + public_id + '/like', headers=headers)
-    elif request.form['action'] == 'unlike':
-        r= requests.delete('https://admin.thebaton.in/editorials/' + public_id + '/like', headers=headers)
-    elif request.form['action'] == 'comment':
-        r= requests.post('https://admin.thebaton.in/editorials/' + public_id + '/comments', json={
-            'comment': request.form['comment'],
-        }, headers=headers)
-    elif request.form['action'] == 'deleteComment':
-        r= requests.delete('https://admin.thebaton.in/editorials/' + public_id + '/comments/' + request.form['comment_id'], headers=headers)
-    elif request.form['action'] == 'updateComment':
-        r= requests.put('https://admin.thebaton.in/editorials/' + public_id + '/comments/' + request.form['comment_id'], json={
-            'comment': request.form['comment'],
-        }, headers=headers)
-    
-    if r.status_code == 200:
-        return redirect(url_for('user_api.editorial', public_id=public_id))
-    else:
-        flash('Something went wrong')
-        return redirect(url_for('user_api.editorial', public_id=public_id))
+@user_api.route("/change-password", methods=['GET', 'POST'])
+def change_password():
 
+    ##---##
+
+    response = make_response(redirect(url_for('user_api.index')))
+    unset_jwt_cookies(response)
+    flash('Password changed successfully, please login again!', 'success')
+    return response
 
 @user_api.route('/blogposts', methods=['GET'])
 def blogposts():
-    page = request.args.get('page', 1, type=int)
-    blogposts = requests.get('https://admin.thebaton.in/blogposts')
-    blogposts = blogposts.reverse()
-    pagination = blogposts.paginate(page, per_page=6, error_out=False)
-    blogposts = pagination.items
-    return render_template('blogposts.html', title='Blogposts - TheBaton', blogposts=blogposts, pagination=pagination)
+    blogs_all = Blogpost.query.order_by(desc('date_modified'))
+    total_blogs = Blogpost.query.count()
+    page_id = request.args.get('page')
+    if not page_id:
+        page_id = 1
+    try:
+        page_id = int(page_id)
+        blogs = [blogs_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+    except ValueError:
+        blogs = [blogs_all[i] for i in range(0, 9)]
 
-    
-@user_api.route('/blogposts/<string:public_id>', methods=['GET'])
-def blogpost(public_id, headers=getheaders()):
-    blogpost = requests.get('https://admin.thebaton.in/blogposts/' + public_id, headers=headers)
-    #get comments from api
-    comments = requests.get('https://admin.thebaton.in/blogposts/' + public_id + '/comments', headers=headers)
-    comments = comments.reverse()
-    #get next editorial
-    next_blogpost = requests.get('https://admin.thebaton.in/blogposts/' + public_id + '/next', headers=headers)
-    return render_template('blogpost.html', title=f'{blogpost.title} - Blogpost - TheBaton', blogpost=blogpost, comments=comments, next_blogpost=next_blogpost)
+    except IndexError:
+        blogs = [blogs_all[i] for i in range(9*(page_id - 1), total_blogs)]
 
+    return render_template('blogposts.html', blogs=blogs)
 
-@user_api.route('/blogposts/<string:public_id>', methods=['POST', 'DELETE', 'PUT'])
-def blogpost_functions(public_id, headers=getheaders()):
-    if request.form['action'] == 'like':
-        r= requests.post('https://admin.thebaton.in/blogposts/' + public_id + '/like', headers=headers)
-    elif request.form['action'] == 'unlike':
-        r= requests.delete('https://admin.thebaton.in/blogposts/' + public_id + '/like', headers=headers)
-    elif request.form['action'] == 'comment':
-        r= requests.post('https://admin.thebaton.in/blogposts/' + public_id + '/comments', json={
-            'comment': request.form['comment'],
-        }, headers=headers)
-    elif request.form['action'] == 'deleteComment':
-        r= requests.delete('https://admin.thebaton.in/blogposts/' + public_id + '/comments/' + request.form['comment_id'], headers=headers)
-    elif request.form['action'] == 'updateComment':
-        r= requests.put('https://admin.thebaton.in/blogposts/' + public_id + '/comments/' + request.form['comment_id'], json={
-            'comment': request.form['comment'],
-        }, headers=headers)
-    
-    if r.status_code == 200:
-        return redirect(url_for('user_api.blogpost', public_id=public_id))
-    else:
-        flash('Something went wrong')
-        return redirect(url_for('user_api.blogpost', public_id=public_id))
-#podcasts   
-#@user_api.route('/podcasts', methods=['GET'])
-#def podcasts():
-    #page = request.args.get('page', 1, type=int)
-    #podcasts = requests.get('https://admin.thebaton.in/podcasts')
-    #podcasts = podcasts.reverse()
-    #pagination = podcasts.paginate(page, per_page=6, error_out=False)
-    #podcasts = pagination.items
-    #return render_template('podcasts.html', title='Podcasts - TheBaton', podcasts=podcasts, pagination=pagination)
-#    return render_template('podcasts.html', title='Podcasts - TheBaton')
+@user_api.route('/blogposts/<public_id>', methods=['GET'])
+def blog_post(public_id):
 
-#contact
+    blogpost = Blogpost.query.filter_by(public_id=public_id).first()
+
+    return render_template_string(source = blogpost.content, blog_post=blogpost)
+
+@user_api.route('/editorials', methods=['GET'])
+def editorials():
+    editorials_all = Editorial.query.order_by(desc('date_modified'))
+    total_editorials = Editorial.query.count()
+    page_id = request.args.get('page')
+    if not page_id:
+        page_id = 1
+    #try:
+    page_id = int(page_id)
+    editorials = [editorials_all[i] for i in range(9*(page_id - 1), total_editorials)]
+    #editorials = [editorials_all[i] for i in range(9*(page_id - 1), 9*page_id)]
+    #except ValueError:
+    #    editorials = [editorials_all[i] for i in range(0, 9)]
+
+    #except IndexError:
+    #    editorials = [editorials_all[i] for i in range(9*(page_id - 1), total_editorials)]
+
+    return render_template('editorials.html', editorial_post=editorials)
+
+@user_api.route('/editorials/<public_id>', methods=['GET'])
+def editorial_post(public_id):
+
+    editorial_post = Editorial.query.filter_by(public_id=public_id).first()
+    toc_string = editorial_post.toc
+    toc_list = toc_string.split(',')
+    toc = [sections.split('--') for sections in toc_list]
+    toc_string_lower = toc_string.lower()
+    toc_string_lower_updated = toc_string_lower.replace('--', ',')
+    toc_string_lower_updated1 = toc_string_lower_updated.replace(' ', '-')
+    toc_id_list = toc_string_lower_updated1.split(',')
+
+    return render_template_string(source = editorial_post.content, editorial_post=editorial_post, toc = toc, toc_id = toc_id_list)
+
+@user_api.route('/podcasts', methods=['GET'])
+def podcasts():
+    return render_template('podcasts.html')
+
 @user_api.route('/contact', methods=['GET'])
 def contact():
-    return render_template('contact.html', title='Contact - TheBaton')
+    return render_template('contact.html')
 
-#about
-@user_api.route('/about', methods=['GET'])
-def about():
-    return render_template('about.html', title='About - TheBaton')
+@user_api.route('/profile-edit', methods=['GET', 'POST', 'PUT'])
+@jwt_required()
+def profile_edit():
+    form = ProfileEditForm()
+    claims = get_jwt()
 
-#terms
-#@user_api.route('/terms', methods=['GET'])
-#def terms():
-#    return render_template('terms.html', title='Terms - TheBaton')
+    if form.validate_on_submit():
+        user = User.query.filter_by(public_id=claims['public_id']).first()
+        user.name = form.name.data
+        user.bio = form.bio.data
+        user.linkedin = form.linkedin.data
+        user.facebook = form.facebook.data
+        user.twitter = form.twitter.data
+        user.instagram = form.instagram.data
+        
+        if form.email.data != user.email:
+            user.email = form.email.data
+            user.email_verified = False
+        
+        db.session.commit()
 
-#privacy
-#@user_api.route('/privacy', methods=['GET'])
-#def privacy():
-#    return render_template('privacy.html', title='Privacy - TheBaton')
+        user = User.query.filter_by(public_id=claims['public_id']).first()
+        
+        access_token = generate_jwt_access_token(user)
+        
+        response = make_response(redirect(url_for('user_api.index')))
+        set_access_cookies(response, access_token)
+        flash('Profile updated successfully', 'success')
+        return response
 
-#team
-#@user_api.route('/team', methods=['GET'])
-#def team():
-#    return render_template('team.html', title='Team - TheBaton')
 
-#authors
-@user_api.route('/authors', methods=['GET'])
-def authors():
-    return render_template('authors.html', title='Authors - TheBaton')
+    return render_template('editprofile.html', profile=claims)
 
-#author profile
-@user_api.route('/author/<string:public_id>', methods=['GET'])
-def author(public_id, headers=getheaders()):
-    author = requests.get('https://admin.thebaton.in/authors/' + public_id, headers=headers)
-    return render_template('author.html', title=f'{author.name} - Author - TheBaton', author=author)
+@user_api.route('/user/<name>', methods=['GET'])
+def profile(name):
+    name_with_spaces = name.replace("-", " ")
+    profile = User.query.filter_by(name=name_with_spaces)
+    return render_template('profile.html', profile = profile)
+
