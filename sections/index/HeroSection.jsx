@@ -6,11 +6,11 @@ const HeroSection = () => {
             <div className="page-header-inner tb-wrap">
             {/* Begin page header image 
             ============================= */}
-            <div className="ph-image">
+            {/*<div className="ph-image">
                 <div className="ph-image-inner">
                 <img src="assets/img/page-header/ph-6.jpg" alt="Image" />
                 </div>
-            </div>
+            </div>*/}
             {/* End page header image */}
             {/* Begin page header caption
             =============================== 
