@@ -12,7 +12,7 @@ const HeaderSection = () => {
 							============================= */}
           {/* <div className="ph-image">
             <div className="ph-image-inner">
-              <Image src="" alt="" />
+              <img src="" alt="" />
             </div>
           </div> */}
           {/* End page header image */}

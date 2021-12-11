@@ -32,7 +32,7 @@ class MyDocument extends Document {
                 <div className="ptr-preloader">
                 <div className="ptr-prel-content">
                     {/* Hint: You may need to change the img height and opacity to match your logo type. You can do this from the "thebaton.css" file (find: ".ptr-prel-image"). */}
-                    <Image src="/assets/img/logo-dark.png" className="ptr-prel-image tb-logo-dark" alt="TheBaton Logo" />
+                    <img src="/assets/img/logo-dark.png" className="ptr-prel-image tb-logo-dark" alt="TheBaton Logo" />
                 </div> {/* /.ptr-prel-content */}
                 </div> {/* /.ptr-preloader */}
             </div>
@@ -54,8 +54,8 @@ class MyDocument extends Document {
                             <Link href="/">
                                 {/* Hint: You may need to change the img height to match your logo type. You can do this from the "thebaton.css" file (find: ".tb-logo img"). */}
                                 <a>
-                                    <Image src="/assets/img/logo-dark.png" className="tb-logo-dark magnetic-item" alt="Logo" /> {/* logo dark */}
-                                    <Image src="/assets/img/logo-light.png" className="tb-logo-light magnetic-item" alt="Logo" /> {/* logo light */}
+                                    <img src="/assets/img/logo-dark.png" className="tb-logo-dark magnetic-item" alt="Logo" /> {/* logo dark */}
+                                    <img src="/assets/img/logo-light.png" className="tb-logo-light magnetic-item" alt="Logo" /> {/* logo light */}
                                 </a>
                             </Link>
                             </div>

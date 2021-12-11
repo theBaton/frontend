@@ -36,7 +36,7 @@ const EditorialSection = ( { data } ) => {
                     <div className="pgi-image-holder cover-opacity-2">
                       <div className="pgi-image-inner anim-zoomin">
                         <figure className="pgi-image ttgr-height">
-                          <Image src={item.cover_image.url} alt={item.cover_image.alternativeText} />
+                          <img src={item.cover_image.url} alt={item.cover_image.alternativeText} />
                         </figure> {/* /.pgi-image */}
                       </div> {/* /.pgi-image-inner */}
                     </div> {/* /.pgi-image-holder */}

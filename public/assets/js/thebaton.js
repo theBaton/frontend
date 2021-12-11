@@ -225,7 +225,7 @@
 			bodyScrollBar.track.xAxis.element.remove();
 
 			// tell ScrollTrigger to use these proxy getter/setter methods for the "body" element:
-			ScrollTrigger.scrollerProxy(document.body, {
+			ScrollTrigger.scrollerProxy("body", {
 				scrollTop(value) {
 					if (arguments.length) {
 						bodyScrollBar.scrollTop = value;

@@ -9,7 +9,7 @@ const HeroSection = () => {
             ============================= */}
             {/*<div className="ph-image">
                 <div className="ph-image-inner">
-                <Image src="assets/img/page-header/ph-6.jpg" alt="Image" />
+                <img src="assets/img/page-header/ph-6.jpg" alt="Image" />
                 </div>
             </div>*/}
             {/* End page header image */}

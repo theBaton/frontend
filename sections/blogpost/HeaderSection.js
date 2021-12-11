@@ -12,7 +12,7 @@ const HeaderSection = ( {data} ) => {
 							============================= */}
           <div className="ph-image">
             <div className="ph-image-inner">
-              <Image src={data.cover_image.url} alt={data.cover_image.alternativeText} />
+              <img src={data.cover_image.url} alt={data.cover_image.alternativeText} />
             </div>
           </div>
           {/* End page header image */}
