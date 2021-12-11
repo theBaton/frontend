@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import Link from 'next/link'
+import Image from 'next/image'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -31,7 +32,7 @@ class MyDocument extends Document {
                 <div className="ptr-preloader">
                 <div className="ptr-prel-content">
                     {/* Hint: You may need to change the img height and opacity to match your logo type. You can do this from the "thebaton.css" file (find: ".ptr-prel-image"). */}
-                    <img src="/assets/img/logo-dark.png" className="ptr-prel-image tb-logo-dark" alt="TheBaton Logo" />
+                    <Image src="/assets/img/logo-dark.png" className="ptr-prel-image tb-logo-dark" alt="TheBaton Logo" />
                 </div> {/* /.ptr-prel-content */}
                 </div> {/* /.ptr-preloader */}
             </div>
@@ -53,8 +54,8 @@ class MyDocument extends Document {
                             <Link href="/">
                                 {/* Hint: You may need to change the img height to match your logo type. You can do this from the "thebaton.css" file (find: ".tb-logo img"). */}
                                 <a>
-                                    <img src="/assets/img/logo-dark.png" className="tb-logo-dark magnetic-item" alt="Logo" /> {/* logo dark */}
-                                    <img src="/assets/img/logo-light.png" className="tb-logo-light magnetic-item" alt="Logo" /> {/* logo light */}
+                                    <Image src="/assets/img/logo-dark.png" className="tb-logo-dark magnetic-item" alt="Logo" /> {/* logo dark */}
+                                    <Image src="/assets/img/logo-light.png" className="tb-logo-light magnetic-item" alt="Logo" /> {/* logo light */}
                                 </a>
                             </Link>
                             </div>
@@ -154,21 +155,7 @@ class MyDocument extends Document {
             </main>
             <NextScript />
 
-            <script src="/assets/vendor/jquery/jquery.min.js"></script> 
-
-            <script src="/assets/vendor/gsap/gsap.min.js"></script> 
-            <script src="/assets/vendor/gsap/ScrollToPlugin.min.js"></script> 
-            <script src="/assets/vendor/gsap/ScrollTrigger.min.js"></script> 
-
-            <script src="/assets/vendor/smooth-scrollbar.js"></script> 
-            <script src="/assets/vendor/swiper/js/swiper-bundle.min.js"></script> 
-            <script src="/assets/vendor/isotope/imagesloaded.pkgd.min.js"></script> 
-            <script src="/assets/vendor/isotope/isotope.pkgd.min.js"></script> 
-            <script src="/assets/vendor/isotope/packery-mode.pkgd.min.js"></script> 
-            <script src="/assets/vendor/lightgallery/js/lightgallery-all.min.js"></script> 
-            <script src="/assets/vendor/jquery.mousewheel.min.js"></script> 
-
-            <script src="/assets/js/thebaton.js"></script>
+            
         </body>
       </Html>
     )

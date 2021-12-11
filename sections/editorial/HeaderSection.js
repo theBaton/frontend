@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import Image from 'next/image'
+
 
 const HeaderSection = ( {data} ) => {
     const date = moment(data.createdAt).format('DD MMM, YYYY');

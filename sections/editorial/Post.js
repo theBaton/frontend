@@ -1,5 +1,7 @@
 import React from "react";
 import parse from 'html-react-parser';
+import Image from 'next/image'
+
 
 
 const Post = ({ data }) => {
@@ -46,12 +48,12 @@ const Post = ({ data }) => {
             {/* Begin tb-image
 								====================
 								* Use class "tti-fixed-height" to enable image fixed height (no effect on small screens!).
-								* Use class "anim-image-parallax" on <img> tag to enable parallax effect.
+								* Use class "anim-image-parallax" on <Image> tag to enable parallax effect.
 								* Use class "margin-bottom-*" to enable bottom margins. For example "margin-bottom-100". More info about helper classes can be found in the file "helper.css".
 								*/}
             <div className="tb-image tti-fixed-height">
               <figure>
-                <img className="anim-image-parallax tb-lazy" src={data.cover_image.url} data-src={data.cover_image.url} alt="image" />
+                <Image className="anim-image-parallax tb-lazy" src={data.cover_image.url} data-src={data.cover_image.url} alt="image" />
                 {data.cover_image_caption ?
                 <figcaption>
                   {data.cover_image_caption}

@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import Image from 'next/image'
+
 
 const HeaderSection = ( {data} ) => {
     const date = moment(data.createdAt).format('DD MMM, YYYY');
@@ -10,7 +12,7 @@ const HeaderSection = ( {data} ) => {
 							============================= */}
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={data.cover_image.url} alt={data.cover_image.alternativeText} />
+              <Image src={data.cover_image.url} alt={data.cover_image.alternativeText} />
             </div>
           </div>
           {/* End page header image */}

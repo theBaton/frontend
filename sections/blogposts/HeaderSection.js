@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import Image from 'next/image'
+
 
 const HeaderSection = () => {
     return (
@@ -9,7 +11,7 @@ const HeaderSection = () => {
 							============================= */}
           {/* <div className="ph-image">
             <div className="ph-image-inner">
-              <img src="" alt="" />
+              <Image src="" alt="" />
             </div>
           </div> */}
           {/* End page header image */}

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 
 const HeroSection = () => {
     return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
             ============================= */}
             {/*<div className="ph-image">
                 <div className="ph-image-inner">
-                <img src="assets/img/page-header/ph-6.jpg" alt="Image" />
+                <Image src="assets/img/page-header/ph-6.jpg" alt="Image" />
                 </div>
             </div>*/}
             {/* End page header image */}
