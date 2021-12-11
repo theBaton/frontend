@@ -1,5 +1,6 @@
 {
-  "name": "thebaton-frontend-alpha2",
+  "name": "thebaton-frontend",
+  "version": "14.17.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
