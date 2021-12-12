@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Head>
-      <Component {...pageProps} />
+      
       <Script src="/assets/vendor/jquery/jquery.min.js"></Script> 
       <Script src="/assets/vendor/gsap/gsap.min.js"></Script> 
       <Script src="/assets/vendor/gsap/ScrollToPlugin.min.js"></Script> 
@@ -25,8 +25,7 @@ function MyApp({ Component, pageProps }) {
       <Script src="/assets/vendor/jquery.mousewheel.min.js"></Script> 
 
       <Script src="/assets/js/thebaton.js"></Script>
-      
-
+      <Component {...pageProps} />
     </>
   )
 }
