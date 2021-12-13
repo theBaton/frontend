@@ -223,8 +223,6 @@
 
 			bodyScrollBar.setPosition(0, 0);
 			bodyScrollBar.targets.xAxis.track.remove();
-			console.log(Object.getOwnPropertyNames(bodyScrollBar));
-			console.log(Object.getOwnPropertyNames(bodyScrollBar.targets.xAxis.track));
 
 			// tell ScrollTrigger to use these proxy getter/setter methods for the "body" element:
 			ScrollTrigger.scrollerProxy("body", {
