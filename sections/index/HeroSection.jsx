@@ -21,23 +21,7 @@ const HeroSection = () => {
                 <div className="ph-caption-title-ghost ph-appear">Greetings!</div>
             </div> 
             {/* End page header caption */}
-            </div> {/* /.page-header-inner */}
-            {/* Begin scroll down circle
-                        ============================== */}
-            <a href="#page-content" className="scroll-down-circle" data-offset={30}>
-            <div className="sdc-inner ph-appear">
-                <div className="sdc-icon"><i className="fas fa-chevron-down" /></div>
-                <svg viewBox="0 0 500 500">
-                <defs>
-                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle" />
-                </defs>
-                <text dy={30}>
-                    <textPath xlinkHref="#textcircle">Scroll down - Scroll down -</textPath>
-                </text>
-                </svg>
-            </div> {/* /.sdc-inner */}
-            </a>
-            {/* End scroll down circle */}
+            </div> {/* /.page-header-inner */}            
         </div>
     );
 };
