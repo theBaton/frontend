@@ -44,7 +44,7 @@ const BlogpostSection = ( { data } ) => {
                   </a></Link> {/* /.pgi-image-wrap */}
                   <div className="pgi-caption">
                     <div className="pgi-caption-inner">
-                      <h2 className="pgi-title">{item.title}</h2>
+                      <h2 className="pgi-title text-white">{item.title}</h2>
                       <div className="pgi-categories-wrap">
                         <div className="pgi-category text-white">{item.cta_title}</div>
                         {/* <div class="pgi-category">Varia</div> */}
