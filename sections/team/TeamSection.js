@@ -19,7 +19,7 @@ const TeamSection = ({ data }) => {
                                     <div className="pgi-image-holder">
                                         <div className="pgi-image-inner anim-zoomin">
                                             <figure className="pgi-image ttgr-height">
-                                                {item.image ?
+                                                {item.profile_picture ?
                                                 <img
                                                     src={item.profile_picture.formats.thumbnail.url}
                                                     alt={item.profile_picture.alternativeText}

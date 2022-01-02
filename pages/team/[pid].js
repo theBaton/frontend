@@ -38,7 +38,7 @@ export async function getStaticProps( { params } ) {
     const res = await fetch(`https://admin.thebaton.in/users?public_id=${pid}`).then(res => res.json());
     return {
         props: {
-            team: res[0]
+            team: res
         }
         }
     };
@@ -57,3 +57,4 @@ export async function getStaticPaths() {
           fallback: false
         }
       }
+      
