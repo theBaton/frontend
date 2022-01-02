@@ -19,10 +19,15 @@ const TeamSection = ({ data }) => {
                                     <div className="pgi-image-holder">
                                         <div className="pgi-image-inner anim-zoomin">
                                             <figure className="pgi-image ttgr-height">
+                                                {item.image ?
                                                 <img
                                                     src={item.profile_picture.formats.thumbnail.url}
                                                     alt={item.profile_picture.alternativeText}
-                                                />
+                                                /> :
+                                                <img
+                                                    src="https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"
+                                                    alt="Team Member"
+                                                />}
                                             </figure>
                                         </div>
                                     </div>
