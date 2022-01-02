@@ -12,9 +12,8 @@ const PageHeaderSection = ( { title, subtitle } ) => {
           </div> 
           {/* End page header caption */}
         </div> {/* /.page-header-inner */}
-        {/* Begin scroll down circle (you can change "data-offset" to set scroll top offset) 
-						============================== */}
-        <a href="#page-content" className="scroll-down-circle" data-offset={30}>
+
+        <a href="#" className="scroll-down-circle" data-offset={30}>
           <div className="sdc-inner ph-appear">
             <div className="sdc-icon"><i className="fas fa-chevron-down" /></div>
             <svg viewBox="0 0 500 500">

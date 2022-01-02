@@ -5,13 +5,6 @@ const ContactForm = () => {
 
         <div className="tb-section padding-top-xlg-150 padding-bottom-xlg-150 padding-left-sm-3-p padding-right-sm-3-p bg-white-accent-3">
           <div className="tb-section-inner tb-wrap max-width-900">
-            {/* Begin tb-Heading 
-              ====================== 
-              * Use class "tb-heading-xsm", "tb-heading-sm", "tb-heading-lg", "tb-heading-xlg" or "tb-heading-xxlg" to set caption size (no class = default size).
-              * Use class "tb-heading-stroke" to enable stroke style.
-              * Use class "tb-heading-center" to align tb-Heading to center.
-              * Use prepared helper class "max-width-*" to add custom width if needed. Example: "max-width-800". More info about helper classes can be found in the file "helper.css".
-              */}
             <div className="tb-heading tb-heading-lg margin-bottom-10-p anim-fadeinup">
               <h3 className="tb-heading-subtitle text-gray">Get in Touch</h3>
               <h2 className="tb-heading-title">Drop Us<br /> a Line</h2>

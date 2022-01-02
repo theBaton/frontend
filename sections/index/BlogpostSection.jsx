@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image'
 
 
 const BlogpostSection = ( { data } ) => {
@@ -32,7 +31,7 @@ const BlogpostSection = ( { data } ) => {
                     <div className="pgi-image-holder cover-opacity-2">
                         <div className="pgi-image-inner anim-zoomin">
                         <figure className="pgi-image ttgr-height">
-                            <img src={item.cover_image.url} alt={item.cover_image.alternativeText} />
+                            <img src={item.cover_image.formats.small.url} alt={item.cover_image.alternativeText} />
                         </figure> 
                         </div> 
                     </div> 
