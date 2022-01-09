@@ -14,7 +14,7 @@ const UserHeroSection = ( { data } ) => {
           </div>
           <div className="ph-caption max-width-1400">
             <div className="ph-categories ph-appear">
-              <h4 className="ph-category text-gray" style={{}}>{data.position}</h4>
+              <h4 className="ph-category text-gray" style={{}}>{data.position_title}</h4>
             </div> {/* /.ph-categories */}
             <h2 className="ph-caption-title ph-appear">{data.name}</h2>
             <div className="ph-caption-title-ghost ph-appear">{data.name}</div>
@@ -22,7 +22,7 @@ const UserHeroSection = ( { data } ) => {
           <div className="project-info-list anim-fadeinup margin-top-60">
             <ul>
               <li>                
-                <div className="pi-list-cont">{data.education}</div>
+                <div className="pi-list-cont">{data.education_course}<br />{data.education_university}</div>
                 <div className="pi-list-heading">
                   <a href={`mailto:${data.email}`}>{data.email}</a>
                 </div>

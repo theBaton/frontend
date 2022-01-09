@@ -21,7 +21,7 @@ const TeamSection = ({ data }) => {
                                             <figure className="pgi-image ttgr-height">
                                                 {item.profile_picture ?
                                                 <img
-                                                    src={item.profile_picture.formats.thumbnail.url}
+                                                    src={item.profile_picture.url}
                                                     alt={item.profile_picture.alternativeText}
                                                 /> :
                                                 <img
@@ -36,10 +36,10 @@ const TeamSection = ({ data }) => {
                                 <div className="pgi-caption">
                                     <div className="pgi-caption-inner">
                                         <h2 className="pgi-title">
-                                            <a href={`/users/${item.public_id}`}>{item.name}</a>
+                                            <a href={`/team/${item.public_id}`}>{item.name}</a>
                                         </h2>
                                         <div className="pgi-categories-wrap">
-                                            <div className="pgi-category">{item.position}</div>
+                                            <div className="pgi-category">{item.position_title}</div>
                                         </div>
                                     </div>
                                 </div>

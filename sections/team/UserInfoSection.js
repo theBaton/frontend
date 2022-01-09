@@ -5,7 +5,7 @@ const UserInfoSection = ( { data } ) => {
         <div className="project-info-list anim-fadeinup margin-top-60">
             <ul>
               <li>                
-                <div className="pi-list-cont">{data.education}</div>
+                <div className="pi-list-cont">{data.education_course}<br />{data.education_university}</div>
                 <div className="pi-list-heading">
                   <a href={`mailto:${data.email}`}>{data.email}</a>
                 </div>

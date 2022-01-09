@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import UserBioSection from '../../sections/team/UserBioSection';
 import UserHeroSection from '../../sections/team/UserHeroSection';
-import UserSocialSection from '../../sections/team/UserSocialSection';
-import UserInfoSection from '../../sections/team/UserSocialSection';
 import UserWorksHeadingSection from '../../sections/team/UserWorksHeadingSection';
 import UserWorksSection from '../../sections/team/UserWorksSection';
 
@@ -21,9 +19,12 @@ export default function Team(props) {
                 <UserBioSection data={props.team}/>
                 <div className="tb-section no-padding-bottom">
                     <div className="tb-section-inner">
-                        <UserWorksHeadingSection title="Editorials" />
+                        {(props.team.editorials.length !=0 ? (
+                        <UserWorksHeadingSection title="Editorials" /> ) : null)}
                         <UserWorksSection data={props.team.editorials}/>
-                        <UserWorksHeadingSection title="Blogposts" />
+
+                        {(props.team.blogposts.length !=0 ? (
+                        <UserWorksHeadingSection title="Blogposts" /> ) : (null))}                        
                         <UserWorksSection data={props.team.blogposts}/>
                     </div>
                 </div>
