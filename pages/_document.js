@@ -85,6 +85,7 @@ class MyDocument extends Document {
                                     {/* Begin menu list */}
                                     <ul className="tb-ol-menu-list">
                                     <li><Link href="/about"><a>About</a></Link></li>
+                                    <li><Link href="/team"><a>Our Team</a></Link></li>
                                     <li><Link href="/blogposts"><a>Blogposts</a></Link></li>
                                     <li><Link href="/editorials"><a>Editorials</a></Link></li>
                                     <li><Link href="/podcasts"><a>Podcasts</a></Link></li>
