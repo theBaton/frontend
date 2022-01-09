@@ -12,7 +12,7 @@ const UserWorksSection = ({ data }) => {
                 <div className="portfolio-grid-item">
                   {item.abstract ? (
                     <Link
-                      href={`/editorial/${item.public_id}`}
+                      href={`/editorials/${item.public_id}`}
                       className="pgi-image-wrap"
                       data-cursor="Read<br>Editorial"
                     >
@@ -31,7 +31,7 @@ const UserWorksSection = ({ data }) => {
                     </Link>
                   ) : (
                     <Link
-                      href={`/blogpost/${item.public_id}`}
+                      href={`/blogposts/${item.public_id}`}
                       className="pgi-image-wrap"
                       data-cursor="Read<br>Blogpost"
                     >
@@ -54,9 +54,9 @@ const UserWorksSection = ({ data }) => {
                     <div className="pgi-caption-inner">
                       <h2 className="pgi-title">
                           {item.abstract ? (
-                        <a href={`/editorial/${item.public_id}`}>{item.title}</a>
+                        <a href={`/editorials/${item.public_id}`}>{item.title}</a>
                         ) : (
-                        <a href={`/blogpost/${item.public_id}`}>{item.title}</a>
+                        <a href={`/blogposts/${item.public_id}`}>{item.title}</a>
                         )}
                       </h2>
                       <div className="pgi-categories-wrap">
