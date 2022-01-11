@@ -4,7 +4,7 @@ const UserHeroSection = ( { data } ) => {
     return (
       <div
         id="page-header"
-        className="ph-full ph-cap-sm ph-image-cropped ph-image-cover-2 ph-content-parallax"
+        className="ph-full ph-cap-sm ph-image-cropped ph-content-parallax"
       >
         <div className="page-header-inner tb-wrap">
           <div className="ph-image">
@@ -29,6 +29,7 @@ const UserHeroSection = ( { data } ) => {
               </li>
             </ul>
         </div>
+        {data.socials_linkedin || data.socials_facebook || data.socials_twitter || data.socials_instagram ? (
         <div className="project-info-list anim-fadeinup margin-top-10">
             <ul>
               <li>
@@ -48,6 +49,7 @@ const UserHeroSection = ( { data } ) => {
               </li>
             </ul>
         </div>
+        ) : null}
         </div>
 
         <a href="#" className="scroll-down-circle" data-offset={30}>
