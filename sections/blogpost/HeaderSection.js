@@ -24,7 +24,7 @@ const HeaderSection = ( {data} ) => {
             <h2 className="ph-caption-title ph-appear">{data.title}</h2> {/* You can use <br class="hide-from-lg"> to break a text line if needed */}
             <div className="ph-meta ph-appear">
               <span className="ph-meta-published">{date}</span>
-              <span className="ph-meta-posted-by">by: <a href={`https://thebaton.in/authors/${data.author.public_id}`} title={`View all posts by ${data.author.name}`}>{data.author.name}</a></span>
+              <span className="ph-meta-posted-by">by: <a href={`https://thebaton.in/team/${data.author.public_id}`} title={`View all posts by ${data.author.name}`}>{data.author.name}</a></span>
             </div> {/* /.ph-meta */}
           </div> 
           {/* End page header caption */}
@@ -43,10 +43,9 @@ const HeaderSection = ( {data} ) => {
               <div className="ph-share-subtitle ph-share-appear">Share this article with your friends</div>
               <div className="social-buttons ph-share-appear">
               <ul>
-                  <li><a href="#0" className="magnetic-item" title="Share on Facebook"><i className="fab fa-facebook-f" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Twitter"><i className="fab fa-twitter" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Pinterest"><i className="fab fa-linkedin" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Pinterest"><i className="fab fa-instagram" /></a></li>
+                  <li><a href={`https://www.facebook.com/sharer.php?u=https://www.thebaton.in/blogposts/${data.public_id}`} className="magnetic-item" title="Share on Facebook"><i className="fab fa-facebook-f" /></a></li>
+                  <li><a href={`https://twitter.com/intent/tweet?url=https://www.thebaton.in/blogposts/${data.public_id}&text=Check%20out%20this%20article%20I%20just%20read`} className="magnetic-item" title="Share on Twitter"><i className="fab fa-twitter" /></a></li>
+                  <li><a href={`https://www.linkedin.com/sharing/share-offsite/?url=https%253A%252F%252Fwww.thebaton.in%2Fblogposts%2F${data.public_id}`} className="magnetic-item" title="Share on LinkedIn"><i className="fab fa-linkedin" /></a></li>
                 </ul>
               </div> {/* /.social-buttons */}
               {/* This close is for mobile devices */}

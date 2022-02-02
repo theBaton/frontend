@@ -16,7 +16,7 @@ const HeaderSection = ( {data} ) => {
             <ul>
               <li>
                 <div className="pi-list-heading">Author</div>
-                <div className="pi-list-cont">{data.author.name}</div>
+                <div className="pi-list-cont"><a href={`https://thebaton.in/team/${data.author.public_id}`}>{data.author.name}</a></div>
               </li>
               <li>
                 <div className="pi-list-heading">Date Published</div>
@@ -48,10 +48,9 @@ const HeaderSection = ( {data} ) => {
               <div className="ph-share-subtitle ph-share-appear">Share this project with your friends</div>
               <div className="social-buttons ph-share-appear">
                 <ul>
-                  <li><a href="#0" className="magnetic-item" title="Share on Facebook"><i className="fab fa-facebook-f" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Twitter"><i className="fab fa-twitter" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Pinterest"><i className="fab fa-linkedin" /></a></li>
-                  <li><a href="#0" className="magnetic-item" title="Share on Pinterest"><i className="fab fa-instagram" /></a></li>
+                  <li><a href={`https://www.facebook.com/sharer.php?u=https://www.thebaton.in/editorials/${data.public_id}`} className="magnetic-item" title="Share on Facebook"><i className="fab fa-facebook-f" /></a></li>
+                  <li><a href={`https://twitter.com/intent/tweet?url=https://www.thebaton.in/editorials/${data.public_id}&text=Check%20out%20this%20article%20I%20just%20read`} className="magnetic-item" title="Share on Twitter"><i className="fab fa-twitter" /></a></li>
+                  <li><a href={`https://www.linkedin.com/sharing/share-offsite/?url=https://www.thebaton.in/editorials/${data.public_id}`} className="magnetic-item" title="Share on LinkedIn"><i className="fab fa-linkedin" /></a></li>
                 </ul>
               </div> {/* /.social-buttons */}
               {/* This close is for mobile devices */}
@@ -60,19 +59,6 @@ const HeaderSection = ( {data} ) => {
             <div className="ph-share-ghost ph-share-appear">Share</div>
           </div> {/* /.ph-share-content */}
         </div>
-        <a href="#" className="scroll-down-circle" data-offset={30}>
-          <div className="sdc-inner ph-appear">
-            <div className="sdc-icon"><i className="fas fa-chevron-down" /></div>
-            <svg viewBox="0 0 500 500">
-              <defs>
-                <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle" />
-              </defs>
-              <text dy={30}>
-                <textPath xlinkHref="#textcircle">Scroll down - Scroll down -</textPath>
-              </text>
-            </svg>
-          </div>
-          </a>
       </div>
     );
 }
