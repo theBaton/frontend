@@ -20,7 +20,7 @@ const PageHeaderSection = ( { title, subtitle } ) => {
               <defs>
                 <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle" />
               </defs>
-              <text dy={30}>
+              <text dy={60}>
                 <textPath xlinkHref="#textcircle">Scroll down - Scroll down -</textPath>
               </text>
             </svg>

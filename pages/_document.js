@@ -138,10 +138,9 @@ class MyDocument extends Document {
                                 <div className="footer-social-text"><span>Follow</span><i className="fas fa-share-alt" /></div>
                                 <div className="social-buttons">
                                 <ul>
-                                    <li><Link href="https://www.facebook.com/" className="magnetic-item" target="_blank" rel="noopener"><a>Fb.</a></Link></li>
-                                    <li><Link href="https://twitter.com/" className="magnetic-item" target="_blank" rel="noopener"><a>Tw.</a></Link></li>
-                                    <li><Link href="https://www.youtube.com/" className="magnetic-item" target="_blank" rel="noopener"><a>Yt.</a></Link></li>
-                                    <li><Link href="https://www.instagram.com/" className="magnetic-item" target="_blank" rel="noopener"><a>Ig.</a></Link></li>
+                                    <li><Link href="https://www.facebook.com/thebatonofficial/" className="magnetic-item" target="_blank" rel="noopener"><a><i className="fab fa-facebook-f" /></a></Link></li>
+                                    <li><Link href="https://www.linkedin.com/company/thebatonofficial/" className="magnetic-item" target="_blank" rel="noopener"><a> <i className="fab fa-linkedin" /></a></Link></li>
+                                    <li><Link href="https://www.instagram.com/thebatonofficial/" className="magnetic-item" target="_blank" rel="noopener"><a><i className="fab fa-instagram" /></a></Link></li>
                                 </ul>
                                 </div> {/* /.social-buttons */}
                             </div> {/* /.footer-social */}
