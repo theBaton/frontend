@@ -31,8 +31,9 @@ export async function getStaticProps({ params }) {
     return {
         props: {
             blogpost: res
-        }
-        }
+        },
+        revalidate: 60
+      }
     };
 
 export async function getStaticPaths() {
