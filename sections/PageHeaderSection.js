@@ -10,7 +10,6 @@ const PageHeaderSection = ( { title, subtitle } ) => {
             <div className="ph-caption-title-ghost ph-appear">{title}</div>
             {subtitle ? <div className="ph-caption-subtitle ph-appear text-gray">{subtitle}</div> : null}
           </div> 
-          {/* End page header caption */}
         </div> {/* /.page-header-inner */}
 
         <a href="#" className="scroll-down-circle" data-offset={30}>
@@ -26,7 +25,6 @@ const PageHeaderSection = ( { title, subtitle } ) => {
             </svg>
           </div> {/* /.sdc-inner */}
         </a>
-        {/* End scroll down circle */}
       </div>     
         )
 }
