@@ -8700,10 +8700,19 @@ body.tb-boxed .blog-single-inner.tb-wrap {
 /* ------------------------------------------------------------- */
 
 #tb-footer {
-	position: relative;
+	position: absolute;
+	bottom: 0;
 	width: 100%;
 	font-size: 14px;
-	z-index: 2;
+	z-index: 999;
+}
+
+#tb-footer.tb-footer-fixed {
+	position: fixed;
+	top: calc(90vh - 22px);
+	width: 100%;
+	font-size: 14px;
+	z-index: 999;
 }
 
 .tb-footer-inner {
@@ -8735,6 +8744,10 @@ body:not(.tb-boxed) .tb-footer-inner,
 #tb-footer .tb-copyright a:hover {
 }
 
+/* footer position fixed */
+#tb-footer.tb-footer-fixed {
+	position: fixed; 
+}
 
 /* For desktop only 
 ==================== */
