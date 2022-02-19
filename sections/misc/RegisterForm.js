@@ -62,7 +62,7 @@ const RegisterForm = ({
 
                     <div className="tb-form-group">
                         <label>Your Past/On-going Experiences at your Internships</label>
-                        <textarea className="tb-form-control" id={67300957} rows={6} name="experiences" placeholder="Name of the institution/person, where, or with whom, you interned, along with the coordinator's contact info/email ID." defaultValue={""} />
+                        <textarea className="tb-form-control" id={67300957} rows={6} name="experiences" placeholder="Name of the institution/person, where, or with whom, you interned, along with the coordinator's contact info/email ID." defaultValue={""} required />
                         <small className="tb-form-text">This specific question is being added for formulating a database of our Team Members for Outreach and Legal Aid Services purposes, and will NOT be visible on the website.</small>
                     </div>
 
