@@ -9,14 +9,7 @@ const ContactForm = () => {
               <h3 className="tb-heading-subtitle text-gray">Get in Touch</h3>
               <h2 className="tb-heading-title">Drop Us<br /> a Line</h2>
             </div>
-            {/* End tb-Heading */}
-            {/* Begin form 
-              ================ 
-              * Use class "tb-form-filled" or "tb-form-minimal" to change form style.
-              * Use class "tb-form-sm" or "tb-form-lg" to change form size (no class = default size).
-              * Use class "tb-hide-labels" to to hide labels.
-              */}
-            <form action="https://formsubmit.co/business@thebaton.in" id="tb-contact-form" className="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup">
+            <form action="https://formsubmit.co/business@thebaton.in" className="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup" method="POST">
               {/* Begin hidden required fields (https://github.com/agragregra/uniMail) */}
               <input type="hidden" name="project_name" defaultValue="thebaton.in" /> {/* Change value to your site name */}
               <input type="hidden" name="admin_email" defaultValue="business@thebaton.in" /> {/* Change value to your valid email address (where a message will be sent) */}
@@ -59,7 +52,6 @@ const ContactForm = () => {
                 <button type="submit" data-hover="Send Message">Send Message</button>
               </div>
             </form>
-            {/* End form */}
           </div> {/* /.tb-section-inner */}
         </div>
       );
