@@ -10,9 +10,9 @@ function Form() {
   
 
       const body = JSON.stringify({
-        username: `0${snakeCase(position)}_${event.target.username.value}`,
+        username: `0${snakeCase(position)}_${snakeCase(event.target.name.value)}`,
         email: event.target.email.value,
-        password: event.target.password.value,
+        password: "password",
         name: event.target.name.value,
         position_title: position,
         education_course: event.target.education_course.value,
