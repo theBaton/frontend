@@ -16,10 +16,10 @@ const ContactForm = () => {
               * Use class "tb-form-sm" or "tb-form-lg" to change form size (no class = default size).
               * Use class "tb-hide-labels" to to hide labels.
               */}
-            <form id="tb-contact-form" className="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup">
+            <form action="https://formsubmit.co/business@thebaton.in" id="tb-contact-form" className="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup">
               {/* Begin hidden required fields (https://github.com/agragregra/uniMail) */}
               <input type="hidden" name="project_name" defaultValue="thebaton.in" /> {/* Change value to your site name */}
-              <input type="hidden" name="admin_email" defaultValue="admin@thebaton.in" /> {/* Change value to your valid email address (where a message will be sent) */}
+              <input type="hidden" name="admin_email" defaultValue="business@thebaton.in" /> {/* Change value to your valid email address (where a message will be sent) */}
               <input type="hidden" name="form_subject" defaultValue="Message from index form at thebaton.in" /> {/* Change value to your own message subject */}
               {/* End Hidden Required Fields */}
               <div className="tb-row">
