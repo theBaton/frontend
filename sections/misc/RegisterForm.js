@@ -8,10 +8,7 @@ const RegisterForm = ({
             <div className="tb-section-inner tb-wrap max-width-800">
                 <form 
                     onSubmit={handleSubmit}
-                    action="https://getform.io/f/fa17ef80-8994-4908-9f5c-0c36c28cced1"
-                    method="POST" 
                     className="tb-form-lg"
-                    encType="multipart/form-data"
                 >
                     <div className="tb-form-group">
                         <label>Name*</label>
@@ -64,16 +61,6 @@ const RegisterForm = ({
                         <label>Your Past/On-going Experiences at your Internships</label>
                         <textarea className="tb-form-control" id={67300957} rows={6} name="experiences" placeholder="Name of the institution/person, where, or with whom, you interned, along with the coordinator's contact info/email ID." defaultValue={""} required />
                         <small className="tb-form-text">This specific question is being added for formulating a database of our Team Members for Outreach and Legal Aid Services purposes, and will NOT be visible on the website.</small>
-                    </div>
-
-                    <div className="tt-form-file">
-                        <label className="tt-btn tt-btn-dark btn-file">
-                            <span data-hover="Upload Photo">
-                                Browse... <input type="file" name="file"/>
-                            </span>
-                        </label>
-                        <input className="tt-file-info" type="text" name="file-info" readOnly required/>
-                        <small className="tt-file-text"> Formal/Semi Formal Photograph (Ideally portrait, face visible without Face-mask/covering, and centered in the frame)* </small>
                     </div>
                     
             <div className="tb-btn tb-btn-dark-outline">
