@@ -33,23 +33,9 @@ function Form() {
           },
           method: 'POST'
         }
-      )
-
-      const getformFormData = new FormData();
-      getformFormData.append('name', event.target.name.value);
-      getformFormData.append('email', event.target.email.value);
-      getformFormData.append('experiences', event.target.experiences.value);
-
-      fetch("https://formsubmit.co/sarvagya6@gmail.com", {
-            method: "POST",
-            body: getformFormData,
-      })
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-  
+      )  
 
       const result = await res.json()
-
 
       // window popup if successful and redirect to index page
       if (result.jwt) {

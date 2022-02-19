@@ -40,6 +40,7 @@ function Form() {
       // window popup if successful
       if (result.jwt) {
         alert("congratulations! you are now registered!")
+        window.location.replace("https://thebaton.in/");  
       } else {
         alert(result.message[0].messages[0].message)
       }
