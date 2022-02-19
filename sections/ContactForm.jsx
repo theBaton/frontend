@@ -10,11 +10,8 @@ const ContactForm = () => {
               <h2 className="tb-heading-title">Drop Us<br /> a Line</h2>
             </div>
             <form action="https://formsubmit.co/business@thebaton.in" className="tb-form-lg tb-form-minimal tb-hide-labels anim-fadeinup" method="POST">
-              {/* Begin hidden required fields (https://github.com/agragregra/uniMail) */}
-              <input type="hidden" name="project_name" defaultValue="thebaton.in" /> {/* Change value to your site name */}
-              <input type="hidden" name="admin_email" defaultValue="business@thebaton.in" /> {/* Change value to your valid email address (where a message will be sent) */}
-              <input type="hidden" name="form_subject" defaultValue="Message from index form at thebaton.in" /> {/* Change value to your own message subject */}
-              {/* End Hidden Required Fields */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://www.thebaton.in/" />
               <div className="tb-row">
                 <div className="tb-col-md-6">
                   <div className="tb-form-group">
@@ -25,7 +22,7 @@ const ContactForm = () => {
                 <div className="tb-col-md-6">
                   <div className="tb-form-group">
                     <label>Email address</label>
-                    <input className="tb-form-control" type="email" name="Email" placeholder="Enter your email" required />
+                    <input className="tb-form-control" type="email" name="email" placeholder="Email Address" required />
                   </div>
                 </div> {/* /.tb-col */}
               </div> {/* /.tb-row */}
