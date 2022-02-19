@@ -9,7 +9,11 @@ const UserHeroSection = ( { data } ) => {
         <div className="page-header-inner tb-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
+              {data.profile_picture ? (
               <img src={data.profile_picture.url} alt="Image" />
+              ) : (
+              null
+              )}
             </div>
           </div>
           <div className="ph-caption max-width-1400">

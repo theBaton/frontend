@@ -8,6 +8,7 @@ const TeamSection = ({ data }) => {
                 <div className="tb-grid-items-wrap isotope-items-wrap">
                     {data.map( ( item ) =>                        
                     <div key={item._id} className="tb-grid-item isotope-item">
+                        {(item.admin_user || item.public_id=="sarvagya-dwivedi") ?
                         <div className="ttgr-item-inner">
                             <div className="portfolio-grid-item">
                                 <Link
@@ -45,6 +46,8 @@ const TeamSection = ({ data }) => {
                                 </div>
                             </div>
                         </div>
+                        :
+                        null}
                     </div>
                     )}
                 </div>
