@@ -8719,7 +8719,7 @@ body.tb-boxed .blog-single-inner.tb-wrap {
 	top: calc(90vh - 22px);
 	width: 100%;
 	font-size: 14px;
-	z-index: 999;
+	z-index: 2;
 }
 @media (max-width: 767px) {
 	#tb-footer.tb-footer-fixed {
